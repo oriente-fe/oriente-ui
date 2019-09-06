@@ -1,7 +1,11 @@
 import Alert from './Alert'
+import Button from './Button'
+import Chip from './Chip'
 
 const components = [
-  Alert
+  Alert,
+  Button,
+  Chip
 ]
 
 const install = function (Vue) {
