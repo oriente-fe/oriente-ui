@@ -3,14 +3,9 @@ import Button from './Button'
 import Chip from './Chip'
 import Dialog from './Dialog'
 
-const components = [
-  Alert,
-  Button,
-  Chip,
-  Dialog
-]
+const components = [Alert, Button, Chip, Dialog]
 
-const install = function (Vue) {
+const install = function(Vue) {
   if (install.installed) return
   components.map(component => Vue.component(component.name, component))
 }
