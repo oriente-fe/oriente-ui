@@ -7,7 +7,7 @@
     </div>
     <div class="page-content" v-hljs>
       <h1>Setup</h1>
-      <pre>$ npm install oriente-ui</pre>
+      <pre>$ yarn add oriente-ui</pre>
       <h1>Usage</h1>
 <pre>
 import orienteUI from 'oriente-ui'
