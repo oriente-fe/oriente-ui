@@ -34,12 +34,16 @@ module.exports = {
         },
         // Other loaders that are needed for your components
         {
-          test: /\.(png|jpe?g|gif|svg)$/,
+          test: /\.(png|jpe?g|gif)$/,
           loader: 'url-loader',
           query: {
             limit: 1000, // 1KB
             name: '[name].[hash:7].[ext]'
           }
+        },
+        {
+          test: /\.svg$/,
+          loader: 'svg-inline-loader'
         },
         {
           test: /\.(css?|scss)(\?.*)?$/,
