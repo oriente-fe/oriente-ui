@@ -1,0 +1,45 @@
+@import './extend/text.scss';
+@import './extend/image.scss';
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin form-transition {
+  transition: 0.3s;
+  -webkit-ransition: 0.3s;
+}
+
+@mixin background-cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+@mixin border-bottom {
+  border-bottom: 1px solid rgba(21, 34, 41, .1);
+}
+
+@mixin line-clamp($line: 1) {
+  @extend %line-clamp-default;
+  -webkit-line-clamp: $line;
+}
+
+@mixin linear-gradient($deg, $top, $bottom) {
+  background: $top;
+  background: -moz-linear-gradient($deg, $top, $bottom);
+  background: -webkit-gradient($deg, $top, $bottom);
+  background: -webkit-linear-gradient($deg, $top, $bottom);
+  background: -o-linear-gradient($deg, $top, $bottom);
+  background: -ms-linear-gradient($deg, $top, $bottom);
+  background: linear-gradient($deg, $top, $bottom);
+}
+
+@mixin rwd-image($ratio: '100%') {
+  @extend %rwd-image-default;
+  > div:first-child {
+    margin-top: $ratio;
+  }
+}

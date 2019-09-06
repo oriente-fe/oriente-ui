@@ -16,6 +16,22 @@ module.exports = {
         '~': path.resolve(__dirname),
         '@': path.resolve(__dirname, 'examples')
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(svg)(\?.*)?$/,
+          use: [
+            {
+              loader: 'svg-inline-loader',
+              options: {
+                limit: 10000,
+                name: 'assets/img/[name].[hash:7].[ext]'
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   chainWebpack: config => {
@@ -29,5 +45,9 @@ module.exports = {
         .tap(options => {
           return options
         })
+    config.module
+      .rule('svg')
+      .test(() => false)
+      .use('file-loader')
   }
 }

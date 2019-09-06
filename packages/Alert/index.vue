@@ -1,14 +1,13 @@
 <template>
   <div :class="[$style['alert'], $style[styleType]]">
-    <span :class="[$style['icon']]" />
-      <slot />
+    <span :class="[$style['icon']]" v-html="require(`~/assets/ic_order-${styleType}.svg`)" />
+    <slot />
   </div>
 </template>
 
 <script>
 export default {
   name: 'Alert',
-
   props: {
     styleType: {
       type: String,
@@ -38,21 +37,12 @@ export default {
   }
   &.completed {
     background-color: $success;
-    .icon {
-      background-image: url('~/assets/ic_order-completed.svg');
-    }
   }
   &.confirmed {
     background-color: $primary;
-    .icon {
-      background-image: url('~/assets/ic_order-confirmed.svg');
-    }
   }
   &.cancelled {
     background-color: $cancel;
-    .icon {
-      background-image: url('~/assets/ic_order-cancelled.svg');
-    }
   }
 }
 </style>
