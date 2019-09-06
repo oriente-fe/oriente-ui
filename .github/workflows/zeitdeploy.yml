@@ -1,3 +1,5 @@
+name: GitHub Action for Zeit
+
 on:
   push:
     branches:
@@ -14,7 +16,7 @@ jobs:
       - run: npm install
       - run: npm run build
 
-  publish-npm:
+  publish-zeit:
     needs: build
     runs-on: ubuntu-latest
     steps:

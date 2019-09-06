@@ -2,7 +2,7 @@
 
 > A bunch of components for supporting Oriente front-end team.
 
-[DEMO](https://oriente-ui.github.io/)
+[DEMO](https://workspace.tonypai.now.sh)
 
 ## Setup
 
