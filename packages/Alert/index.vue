@@ -1,6 +1,9 @@
 <template>
   <div :class="[$style['alert'], $style[styleType]]">
-    <span :class="[$style['icon']]" v-html="require(`~/assets/ic_order-${styleType}.svg`)" />
+    <span
+      :class="[$style['icon']]"
+      v-html="require(`~/assets/ic_order-${styleType}.svg`)"
+    />
     <slot />
   </div>
 </template>

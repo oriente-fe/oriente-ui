@@ -1,9 +1,9 @@
 <template>
   <button
     :type="type"
-    :class="[$style['button'],$style[styleType]]"
+    :class="[$style['button'], $style[styleType]]"
     @click="$emit('click', $event)"
-    >
+  >
     <!-- @slot button icon -->
     <slot name="icon" />
     <!-- @slot button content -->
