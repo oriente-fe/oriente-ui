@@ -3,7 +3,7 @@
     <div class="page-header">
       <h1>Oriente UI</h1>
       <h2>A bunch of components for supporting Oriente front-end team.</h2>
-      <a href="https://github.com/" class="btn" target="_blank">
+      <a href="https://github.com/tpai/oriente-ui" class="btn" target="_blank">
         View on GitHub
       </a>
     </div>
