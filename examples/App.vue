@@ -37,9 +37,46 @@ Vue.use(orienteUI)
       <Chip style-type="error">
         error
       </Chip>
+      <h2>Dialog</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="openDialog"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open Dialog
+        </Button>
+        <Dialog :value="isDialogShown" @input="closeDialog">
+          <div slot="header">
+            Header
+          </div>
+          Content
+          <div slot="footer">
+            Footer
+          </div>
+        </Dialog>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      isDialogShown: false
+    }
+  },
+  methods: {
+    openDialog() {
+      this.isDialogShown = true
+    },
+    closeDialog() {
+      this.isDialogShown = false
+    }
+  }
+}
+</script>
 
 <style lang="sass">
 @import "assets/style.scss";
