@@ -37,14 +37,13 @@ module.exports = {
   chainWebpack: config => {
     config.module
       .rule('js')
-      .include
-        .add(path.resolve(__dirname, 'packages'))
-        .end()
+      .include.add(path.resolve(__dirname, 'packages'))
+      .end()
       .use('babel')
-        .loader('babel-loader')
-        .tap(options => {
-          return options
-        })
+      .loader('babel-loader')
+      .tap(options => {
+        return options
+      })
     config.module
       .rule('svg')
       .test(() => false)
