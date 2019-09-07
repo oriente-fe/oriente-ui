@@ -14,7 +14,7 @@ module.exports = {
       extensions: ['.js', '.json', '.vue'],
       alias: {
         '~': path.resolve(__dirname),
-        '@': path.resolve(__dirname, 'examples')
+        '@': path.resolve(__dirname, 'packages')
       }
     },
     module: {
