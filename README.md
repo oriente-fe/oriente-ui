@@ -6,8 +6,8 @@
 
 ## Setup
 
-```bash
-$ npm install oriente-ui -S
+```sh
+$ yarn add oriente-ui
 ```
 ## Usage
 
