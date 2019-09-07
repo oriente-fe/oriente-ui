@@ -8,13 +8,33 @@
       </a>
     </div>
     <div class="page-content" v-hljs>
+      <h1>Features</h1>
+      <ul>
+        <li>
+          Mobile friendly.
+        </li>
+        <li>
+          Works on all fancy browsers.
+        </li>
+        <li>
+          Supports SSR, SPA, PWA and standard HTML pages.
+        </li>
+      </ul>
       <h1>Setup</h1>
       <pre>$ yarn add oriente-ui</pre>
       <h1>Usage</h1>
+      <h2>Install plugin</h2>
       <pre>
 import orienteUI from 'oriente-ui'
 Vue.use(orienteUI)
 </pre
+      >
+      <h2>Or import named module</h2>
+      <pre>
+import { Button } from 'oriente-ui'
+export default {
+  components: { Button }
+}</pre
       >
       <h1>Demo</h1>
       <h2>Alert</h2>
