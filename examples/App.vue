@@ -37,6 +37,22 @@ Vue.use(orienteUI)
       <Chip style-type="error">
         error
       </Chip>
+      <h2>ConfirmDialog</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="openConfirmDialog"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open Confirm Dialog
+        </Button>
+        <ConfirmDialog
+          message="Content to confirm"
+          button-text="I agree"
+          v-model="isConfirmDialogShown"
+          @confirm="confirm"
+        />
+      </div>
       <h2>Dialog</h2>
       <div>
         <Button
@@ -64,7 +80,8 @@ Vue.use(orienteUI)
 export default {
   data() {
     return {
-      isDialogShown: false
+      isDialogShown: false,
+      isConfirmDialogShown: false
     }
   },
   methods: {
@@ -73,6 +90,12 @@ export default {
     },
     closeDialog() {
       this.isDialogShown = false
+    },
+    openConfirmDialog() {
+      this.isConfirmDialogShown = true
+    },
+    confirm() {
+      console.log('confirmed')
     }
   }
 }
