@@ -8,13 +8,33 @@
       </a>
     </div>
     <div class="page-content" v-hljs>
+      <h1>Features</h1>
+      <ul>
+        <li>
+          Mobile friendly.
+        </li>
+        <li>
+          Works on all fancy browsers.
+        </li>
+        <li>
+          Supports SSR, SPA, PWA and standard HTML pages.
+        </li>
+      </ul>
       <h1>Setup</h1>
       <pre>$ yarn add oriente-ui</pre>
       <h1>Usage</h1>
+      <h2>Install plugin</h2>
       <pre>
 import orienteUI from 'oriente-ui'
 Vue.use(orienteUI)
 </pre
+      >
+      <h2>Or import named module</h2>
+      <pre>
+import { Button } from 'oriente-ui'
+export default {
+  components: { Button }
+}</pre
       >
       <h1>Demo</h1>
       <h2>Alert</h2>
@@ -72,7 +92,91 @@ Vue.use(orienteUI)
           </div>
         </Dialog>
       </div>
+      <h2>FixedButton</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="showFixedButton"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open FixedButton
+        </Button>
+        <FixedButton
+          v-if="isFixedButtonShown"
+          styleType="primary"
+          @click="hideFixedButton"
+        >
+          Close FixedButton
+        </FixedButton>
+      </div>
+      <h2>Header</h2>
+      <Header>
+        <div slot="left">Left</div>
+        <div>Center</div>
+        <div slot="right">Right</div>
+      </Header>
+      <h2>Loading</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="showLoading"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open Loading
+        </Button>
+        <Loading v-if="isLoading" mode="fixed" mask="dark" />
+      </div>
+      <h2>Modal</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="openModal"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open Modal
+        </Button>
+        <Modal title="Title" :value="isModalShown" @input="closeModal">
+          Content
+        </Modal>
+      </div>
+      <h2>Price</h2>
+      <Price :originalPrice="100" :price="10" currency="USD" size="2" />
+      <h2>StandarizedContainer</h2>
+      <h3>
+        Define any aspect ratio such as <strong>16:9</strong>, element stays in
+        this container will keep it.
+      </h3>
+      <section>
+        <StandarizedContainer ratio="16:9">
+          <iframe src="https://www.youtube.com/embed/jDDy-Vh55to" />
+        </StandarizedContainer>
+      </section>
+      <h2>StandarizedImage</h2>
+      <h3>
+        Define any aspect ratio such as <strong>16:9</strong>, this image will
+        keep it.
+      </h3>
+      <section>
+        <StandarizedImage
+          url="https://picsum.photos/id/47/1000/1000"
+          ratio="16:9"
+        />
+      </section>
+      <h2>Toast</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="openToast"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open Toast
+        </Button>
+      </div>
     </div>
+    <!-- Place Toast component is for better presentation. -->
+    <Toast :value="isToastShown" @input="closeToast">
+      This is a toast.
+    </Toast>
   </div>
 </template>
 
@@ -81,7 +185,11 @@ export default {
   data() {
     return {
       isDialogShown: false,
-      isConfirmDialogShown: false
+      isConfirmDialogShown: false,
+      isFixedButtonShown: false,
+      isLoading: false,
+      isModalShown: false,
+      isToastShown: false
     }
   },
   methods: {
@@ -96,6 +204,31 @@ export default {
     },
     confirm() {
       console.log('confirmed')
+    },
+    showFixedButton() {
+      this.isFixedButtonShown = true
+    },
+    hideFixedButton() {
+      this.isFixedButtonShown = false
+    },
+    showLoading() {
+      this.isLoading = true
+      setTimeout(() => this.hideLoading(), 1500)
+    },
+    hideLoading() {
+      this.isLoading = false
+    },
+    openModal() {
+      this.isModalShown = true
+    },
+    closeModal() {
+      this.isModalShown = false
+    },
+    openToast() {
+      this.isToastShown = true
+    },
+    closeToast() {
+      this.isToastShown = false
     }
   }
 }

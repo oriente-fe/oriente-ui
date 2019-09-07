@@ -4,10 +4,16 @@
 
 [DEMO](https://workspace.tonypai.now.sh)
 
+## Features
+
+- Mobile friendly.
+- Works on all fancy browsers.
+- Supports SSR, SPA, PWA and standard HTML pages.
+
 ## Setup
 
-```bash
-$ npm install oriente-ui -S
+```sh
+$ yarn add oriente-ui
 ```
 ## Usage
 
