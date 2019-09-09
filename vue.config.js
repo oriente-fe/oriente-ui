@@ -8,7 +8,7 @@ module.exports = {
       filename: 'index.html'
     }
   },
-  css: { extract: false },
+  css: { extract: true },
   configureWebpack: {
     resolve: {
       extensions: ['.js', '.json', '.vue'],
