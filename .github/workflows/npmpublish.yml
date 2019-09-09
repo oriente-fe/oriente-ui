@@ -14,7 +14,9 @@ jobs:
           node-version: 8
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm run lib
+      - run: npm run lib:ph && cp lib/oriente-ui.css ph.css
+      - run: npm run lib:id && cp lib/oriente-ui.css id.css
+      - run: mv ph.css lib
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
