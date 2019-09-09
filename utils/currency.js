@@ -4,14 +4,10 @@ export const formatMoney = (amount, options = {}) => {
     return amount
   }
   const defaultOptions = getCurrencyDefaultOptions(options.currency)
-  const { currency, symbol, precision } = Object.assign(
-    {},
-    defaultOptions,
-    options
-  )
+  const { key, symbol, precision } = Object.assign({}, defaultOptions, options)
 
   const absNumber = Math.abs(number)
-  const price = formatNumberWithCommas(absNumber, currency, {
+  const price = formatNumberWithCommas(absNumber, key, {
     minimumFractionDigits: precision,
     maximumFractionDigits: precision
   })
@@ -34,6 +30,7 @@ export const getCurrencyDefaultOptions = (currency = 'PHP') => {
     case 'PH':
     case 'PHP':
       return {
+        key: 'PH',
         currency: 'PHP',
         symbol: '₱',
         precision: 2
@@ -41,15 +38,16 @@ export const getCurrencyDefaultOptions = (currency = 'PHP') => {
     case 'ID':
     case 'IDR':
       return {
+        key: 'ID',
         currency: 'IDR',
         symbol: 'Rp',
-        precision: 2
+        precision: 0
       }
     default:
       return {
         currency,
         symbol: '$',
-        precision: 2
+        precision: 0
       }
   }
 }

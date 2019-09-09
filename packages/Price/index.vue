@@ -121,13 +121,13 @@ Usage
   size="1"
 />
 <Price
-  :price="10"
+  :price="1000"
   currency="IDR"
   size="1"
 />
 <Price
-  :originalPrice="100"
-  :price="10"
+  :originalPrice="10000"
+  :price="1000"
   currency="PHP"
   size="2"
 />

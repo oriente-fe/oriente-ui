@@ -1,6 +1,6 @@
 {
   "name": "oriente-ui",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A bunch of components for supporting Oriente front-end team.",
   "main": "lib/oriente-ui.umd.min.js",
   "keyword": "oriente-ui oriente",
@@ -9,8 +9,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "styleguide": "vue-styleguidist server",
-    "lib": "vue-cli-service build --target lib --name oriente-ui --dest lib packages/index.js"
+    "styleguide:ph": "THEME=ph vue-styleguidist server",
+    "styleguide:id": "THEME=id vue-styleguidist server",
+    "lib:ph": "THEME=ph vue-cli-service build --target lib --name oriente-ui --dest lib packages/index.js",
+    "lib:id": "THEME=id vue-cli-service build --target lib --name oriente-ui --dest lib packages/index.js"
   },
   "files": [
     "lib"

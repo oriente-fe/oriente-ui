@@ -55,7 +55,13 @@ module.exports = {
                 modules: true
               }
             },
-            'sass-loader'
+            {
+              loader: 'sass-loader',
+              options: {
+                data: `@import '~/styles/themes/${process.env.THEME ||
+                  'ph'}.scss';`
+              }
+            }
           ]
         }
       ]
