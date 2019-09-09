@@ -17,9 +17,30 @@ $ yarn add oriente-ui
 ```
 ## Usage
 
+SPA (CSR)
+
 ```js
-import orienteUI from 'oriente-ui'
-Vue.use(orienteUI)
+import OrienteUI from 'oriente-ui'
+import 'oriente-ui/lib/oriente-ui.css'
+
+Vue.use(OrienteUI)
+```
+
+Nuxt.js (SSR)
+
+```js
+// plugins/oriente-ui.js
+import OrienteUI from 'oriente-ui'
+import 'oriente-ui/lib/oriente-ui.css'
+
+export default () => {
+  Vue.use(OrienteUI)
+}
+
+// nuxt.config.js
+plugins: [
+  '~/plugins/oriente-ui.js'
+]
 ```
 
 ## Build
