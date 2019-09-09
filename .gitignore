@@ -89,7 +89,6 @@ typings/
 
 # Output files
 dist/
-lib/
 
 # Hidden files
 .DS_Store
