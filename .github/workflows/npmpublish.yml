@@ -16,7 +16,7 @@ jobs:
       - run: npm install
       - run: npm run lib:ph && cp lib/oriente-ui.css ph.css
       - run: npm run lib:id && cp lib/oriente-ui.css id.css
-      - run: mv ph.css lib
+      - run: mv ph.css id.css lib
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
