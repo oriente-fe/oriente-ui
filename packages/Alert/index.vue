@@ -25,7 +25,7 @@ export default {
 @import '~/styles/extend/flexbox.scss';
 .alert {
   @extend %flex-center;
-  justify-content: start;
+  justify-content: flex-start;
   width: 100%;
   height: 60px;
   color: $white;
