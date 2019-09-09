@@ -8,7 +8,14 @@ module.exports = {
       filename: 'index.html'
     }
   },
-  css: { extract: true },
+  css: {
+    extract: true,
+    loaderOptions: {
+      scss: {
+        data: `@import '~/styles/themes/${process.env.THEME || 'ph'}.scss';`
+      }
+    }
+  },
   configureWebpack: {
     resolve: {
       extensions: ['.js', '.json', '.vue'],
