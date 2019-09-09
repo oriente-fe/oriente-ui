@@ -1,6 +1,6 @@
 {
   "name": "oriente-ui",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A bunch of components for supporting Oriente front-end team.",
   "main": "lib/oriente-ui.umd.min.js",
   "keyword": "oriente-ui oriente",
