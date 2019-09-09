@@ -23,18 +23,28 @@
       <h1>Setup</h1>
       <pre>$ yarn add oriente-ui</pre>
       <h1>Usage</h1>
-      <h2>Install plugin</h2>
+      <h2>SPA (CSR)</h2>
       <pre>
-import orienteUI from 'oriente-ui'
-Vue.use(orienteUI)
+import OrienteUI from 'oriente-ui'
+import 'oriente-ui/lib/oriente-ui.css'
+
+Vue.use(OrienteUI)
 </pre
       >
-      <h2>Or import named module</h2>
+      <h2>Nuxt.js (SSR)</h2>
       <pre>
-import { Button } from 'oriente-ui'
-export default {
-  components: { Button }
-}</pre
+// plugins/oriente-ui.js
+import OrienteUI from 'oriente-ui'
+import 'oriente-ui/lib/oriente-ui.css'
+
+export default () => {
+  Vue.use(OrienteUI)
+}
+
+// nuxt.config.js
+plugins: [
+  '~/plugins/oriente-ui.js'
+]</pre
       >
       <h1>Demo</h1>
       <h2>Alert</h2>
