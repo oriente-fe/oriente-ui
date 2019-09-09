@@ -12,6 +12,9 @@
     "styleguide": "vue-styleguidist server",
     "lib": "vue-cli-service build --target lib --name oriente-ui --dest lib packages/index.js"
   },
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "highlight.js": "^9.15.10",
     "vue": "^2.5.17"
