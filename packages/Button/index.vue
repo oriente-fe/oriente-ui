@@ -15,12 +15,15 @@
 export default {
   name: 'Button',
   props: {
+    /**
+     * Define button type
+     */
     type: {
       type: String,
       default: 'button'
     },
     /**
-     * Define different button style
+     * Define button style
      */
     styleType: {
       type: String,

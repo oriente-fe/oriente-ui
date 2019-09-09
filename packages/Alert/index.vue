@@ -4,6 +4,7 @@
       :class="[$style['icon']]"
       v-html="require(`~/assets/ic_order-${styleType}.svg`)"
     />
+    <!-- @slot message text -->
     <slot />
   </div>
 </template>
@@ -12,6 +13,9 @@
 export default {
   name: 'Alert',
   props: {
+    /**
+     * Define alert style
+     */
     styleType: {
       type: String,
       default: 'confirmed'
