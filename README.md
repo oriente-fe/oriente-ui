@@ -45,7 +45,7 @@ plugins: [
 
 ## Build
 
-Publish npm package
+Build library files
 
 ```bash
 $ yarn lib
