@@ -10,6 +10,7 @@
         {{ name }}
       </div>
     </div>
+    <!-- @slot offer multiple slots for matching different tabs -->
     <slot :name="activeTabContent"></slot>
   </div>
 </template>
@@ -28,7 +29,7 @@ export default {
   },
   data() {
     return {
-      currentTab: this.names.find((_, i) => i === 0)
+      currentTab: this.names[0]
     }
   },
   computed: {
