@@ -151,6 +151,26 @@ plugins: [
       </div>
       <h2>Price</h2>
       <Price :originalPrice="100" :price="10" currency="USD" size="2" />
+      <h2>SlideUpDialog</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="openSlideUpDialog"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open SlideUpDialog
+        </Button>
+        <SlideUpDialog
+          :value="isSlideUpDialogShown"
+          title="Title"
+          @input="closeSlideUpDialog"
+        >
+          Content
+          <div slot="footer">
+            Footer
+          </div>
+        </SlideUpDialog>
+      </div>
       <h2>StandarizedContainer</h2>
       <h3>
         Define any aspect ratio such as <strong>16:9</strong>, element stays in
@@ -199,6 +219,7 @@ export default {
       isFixedButtonShown: false,
       isLoading: false,
       isModalShown: false,
+      isSlideUpDialogShown: false,
       isToastShown: false
     }
   },
@@ -233,6 +254,12 @@ export default {
     },
     closeModal() {
       this.isModalShown = false
+    },
+    openSlideUpDialog() {
+      this.isSlideUpDialogShown = true
+    },
+    closeSlideUpDialog() {
+      this.isSlideUpDialogShown = false
     },
     openToast() {
       this.isToastShown = true
