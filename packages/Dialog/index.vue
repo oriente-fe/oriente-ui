@@ -14,6 +14,7 @@
       @wheel.self.stop.prevent
       @touchmove.self.stop.prevent
     >
+      <!-- @slot modal header -->
       <slot name="header">
         <div :class="$style.header" />
       </slot>
@@ -23,6 +24,7 @@
         <slot />
       </div>
 
+      <!-- @slot modal footer -->
       <slot name="footer">
         <div :class="$style.footer" />
       </slot>
