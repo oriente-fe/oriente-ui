@@ -8,43 +8,46 @@
     @touchmove.self.stop.prevent
   >
     <div
-      :class="[$style.container, $style[size]]"
+      :class="$style.container"
       @click.stop.prevent
       @scroll.self.stop.prevent
       @wheel.self.stop.prevent
       @touchmove.self.stop.prevent
     >
-      <!-- @slot modal header -->
-      <slot name="header">
-        <div :class="$style.header" />
-      </slot>
+      <div>
+        <span
+          :class="$style.close"
+          @click="close"
+          v-html="require('~/assets/ic_close.svg')"
+        />
+        <div v-if="title" :class="$style.title">
+          {{ title }}
+        </div>
+      </div>
 
       <div :class="$style.content">
         <!-- @slot modal content -->
         <slot />
       </div>
 
-      <!-- @slot modal footer -->
-      <slot name="footer">
-        <div :class="$style.footer" />
-      </slot>
+      <div>
+        <!-- @slot modal footer -->
+        <slot name="footer"> </slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dialog',
+  name: 'SlideUpDialog',
   props: {
     /**
-     * size of dialog
+     * modal title
      */
-    size: {
+    title: {
       type: String,
-      default: 'large',
-      validator: val => {
-        return ['small', 'large'].includes(val)
-      }
+      default: ''
     },
     /**
      * show / hide
@@ -79,6 +82,7 @@ export default {
 
 .modal {
   @extend %flex-center;
+  align-items: flex-end;
 
   position: fixed;
   top: 0;
@@ -89,31 +93,38 @@ export default {
   z-index: 999;
   animation: motion_bg 0.3s ease-out 0s;
 }
+
 .container {
   @extend %card;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+
+  width: 100%;
+  padding: $spacing-2;
   animation: motion_card 0.25s ease-out 0s;
 }
-.content {
-  @extend %card-content;
-  p {
-    line-height: $fs-16;
+
+.title {
+  margin: $spacing-1 0 0;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 16px;
+  filter: opacity(0.35);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
   }
 }
-.small {
-  min-width: 200px;
-  max-width: 80vw;
-  min-height: 130px;
-  max-height: 50vh;
-  text-align: center;
-}
-.large {
-  width: 90vw;
-  max-height: 70vh;
-}
-.header,
-.footer {
-  @extend %card-footer;
-}
+
 @keyframes motion_bg {
   0% {
     background: rgba($black, 0);
@@ -122,42 +133,42 @@ export default {
     background: rgba($black, 0.55);
   }
 }
+
 @keyframes motion_card {
   0% {
-    transform: scale(0.85);
+    bottom: -100vh;
+    opacity: 0.5;
   }
   100% {
-    transform: scale(1);
+    bottom: 0px;
+    opacity: 1;
   }
 }
 </style>
 
 <docs>
-
 Usage
 
-```jsx
+```
 <template>
   <div>
     <Button
       style-type="default"
-      @click="openDialog"
+      @click="openSlideUpDialog"
       :style="{border: '1px solid #333'}"
       >
-      Open Dialog
+      Open SlideUpDialog
     </Button>
-      <Dialog
-        :value="isDialogShown"
-        @input="closeDialog"
-        >
-        <div slot="header">
-          Header
-        </div>
-        Content
-        <div slot="footer">
-          Footer
-        </div>
-      </Dialog>
+    <SlideUpDialog
+      :value="isSlideUpDialogShown"
+      title="Title"
+      @input="closeSlideUpDialog"
+    >
+      Content
+      <div slot="footer">
+        Footer
+      </div>
+    </SlideUpDialog>
   </div>
 </template>
 
@@ -165,15 +176,15 @@ Usage
 export default {
   data() {
     return {
-      isDialogShown: false
+      isSlideUpDialogShown: false
     }
   },
   methods: {
-    openDialog() {
-      this.isDialogShown = true
+    openSlideUpDialog() {
+      this.isSlideUpDialogShown = true
     },
-    closeDialog() {
-      this.isDialogShown = false
+    closeSlideUpDialog() {
+      this.isSlideUpDialogShown = false
     }
   }
 }

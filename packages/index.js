@@ -8,8 +8,10 @@ import Header from './Header'
 import Loading from './Loading'
 import Modal from './Modal'
 import Price from './Price'
+import SlideUpDialog from './SlideUpDialog'
 import StandarizedContainer from './StandarizedContainer'
 import StandarizedImage from './StandarizedImage'
+import Tabs from './Tabs'
 import Toast from './Toast'
 
 const components = [
@@ -23,8 +25,10 @@ const components = [
   Loading,
   Modal,
   Price,
+  SlideUpDialog,
   StandarizedContainer,
   StandarizedImage,
+  Tabs,
   Toast
 ]
 
