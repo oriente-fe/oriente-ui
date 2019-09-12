@@ -11,6 +11,7 @@ import Price from './Price'
 import SlideUpDialog from './SlideUpDialog'
 import StandarizedContainer from './StandarizedContainer'
 import StandarizedImage from './StandarizedImage'
+import Tabs from './Tabs'
 import Toast from './Toast'
 
 const components = [
@@ -27,6 +28,7 @@ const components = [
   SlideUpDialog,
   StandarizedContainer,
   StandarizedImage,
+  Tabs,
   Toast
 ]
 

@@ -192,6 +192,14 @@ plugins: [
           ratio="16:9"
         />
       </section>
+      <h2>Tabs</h2>
+      <Tabs :names="['All', 'Confirmed', 'Completed', 'Failed', 'Cancelled']">
+        <div slot="All">All</div>
+        <div slot="Confirmed">Confirmed</div>
+        <div slot="Completed">Completed</div>
+        <div slot="Failed">Failed</div>
+        <div slot="Cancelled">Cancelled</div>
+      </Tabs>
       <h2>Toast</h2>
       <div>
         <Button
