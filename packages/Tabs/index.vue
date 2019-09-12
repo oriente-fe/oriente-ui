@@ -32,7 +32,7 @@ export default {
     }
   },
   computed: {
-    tabs() {
+    tabsRef() {
       return this.$refs.tabs
     },
     activeTabContent() {
@@ -43,8 +43,8 @@ export default {
     clickTab(target, name) {
       this.currentTab = name
 
-      const tabsLeft = this.tabs.offsetLeft
-      const tabsWidth = this.tabs.offsetWidth
+      const tabsLeft = this.tabsRef.offsetLeft
+      const tabsWidth = this.tabsRef.offsetWidth
       const tabLeft = target.offsetLeft
       const tabWidth = target.offsetWidth
       const offset =
@@ -52,7 +52,7 @@ export default {
         tabsLeft -
         Math.floor(tabsWidth / 2) +
         Math.floor(tabWidth / 2)
-      this.tabs.scrollTo({
+      this.tabsRef.scrollTo({
         behavior: 'smooth',
         left: offset
       })
