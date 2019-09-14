@@ -17,6 +17,11 @@ jobs:
       - run: npm run lib:ph && cp lib/oriente-ui.css ph.css
       - run: npm run lib:id && cp lib/oriente-ui.css id.css
       - run: mv ph.css id.css lib
-      - run: npm publish
+      - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+      - run: npm publish --registry=https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: npm config set //npm.pkg.github.com/:_authToken=$GITHUB_TOKEN
+      - run: npm publish --registry=https://npm.pkg.github.com/@tpai
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
