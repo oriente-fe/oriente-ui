@@ -1,29 +1,16 @@
 <template>
-  <div :class="$style.price">
-    <span
-      :class="[
-        $style.sale,
-        {
-          [$style['fs-small']]: size === 'small',
-          [$style['fs-medium']]: size === 'medium'
-        }
-      ]"
-    >
-      {{ formattedPrice }}
-    </span>
-    <span
-      v-if="formattedOriginalPrice"
-      :class="[
-        $style.original,
-        {
-          [$style['fs-mini']]: size === 'small',
-          [$style['fs-small']]: size === 'medium'
-        }
-      ]"
-    >
-      {{ formattedOriginalPrice }}
-    </span>
-  </div>
+  <span
+    :class="[
+      $style.sale,
+      {
+        [$style['disabled']]: disabled,
+        [$style['fs-small']]: size === 'small',
+        [$style['fs-medium']]: size === 'medium'
+      }
+    ]"
+  >
+    {{ formattedPrice }}
+  </span>
 </template>
 
 <script>
@@ -33,14 +20,7 @@ export default {
   name: 'Price',
   props: {
     /**
-     * original price
-     */
-    originalPrice: {
-      type: Number,
-      default: null
-    },
-    /**
-     * on-sale price
+     * price
      */
     price: {
       type: Number,
@@ -59,6 +39,13 @@ export default {
     size: {
       type: String,
       default: 'small'
+    },
+    /**
+     * disabled
+     */
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -67,14 +54,6 @@ export default {
         return null
       }
       return formatMoney(this.price, {
-        currency: this.currency
-      })
-    },
-    formattedOriginalPrice() {
-      if (typeof this.originalPrice !== 'number') {
-        return null
-      }
-      return formatMoney(this.originalPrice, {
         currency: this.currency
       })
     }
@@ -91,14 +70,12 @@ export default {
   display: inline-block;
   vertical-align: middle;
   font-weight: $fw-bold;
-  color: $secondary;
-  padding: 0 $spacing-1 0 0;
+  color: $primary;
 }
-.original {
-  display: inline-block;
-  vertical-align: middle;
+.disabled {
+  color: $black;
   text-decoration: line-through;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 .fs-medium {
   font-size: $fs-18;
@@ -115,21 +92,32 @@ export default {
 Usage
 
 ```
-<Price
-  :price="1"
-  currency="USD"
-  size="1"
-/>
+<div>
+  <Price
+    :price="1"
+    currency="USD"
+    size="1"
+  />
+</div>
+<div>
 <Price
   :price="1000"
   currency="IDR"
   size="1"
 />
-<Price
-  :originalPrice="10000"
-  :price="1000"
-  currency="PHP"
-  size="2"
-/>
+</div>
+<div>
+  <Price
+    :price="1000"
+    currency="PHP"
+    size="2"
+  />
+  <Price
+    :price="1000"
+    currency="PHP"
+    size="2"
+    disabled
+  />
+</div>
 ```
 </docs>
