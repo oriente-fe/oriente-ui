@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~/styles/_variables.scss';
+@import '~/styles/_all.scss';
 .price {
   margin: 3px 0 0 0;
 }

@@ -63,8 +63,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~/styles/_variables.scss';
-@import '~/styles/extend/flexbox.scss';
+@import '~/styles/_all.scss';
 
 .tabs {
   @extend %flex-default;
