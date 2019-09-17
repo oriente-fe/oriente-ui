@@ -67,10 +67,12 @@ export default {
   margin: 3px 0 0 0;
 }
 .sale {
+  @include line-clamp(1);
+
   display: inline-block;
   vertical-align: middle;
-  font-weight: $fw-bold;
   color: $primary;
+  white-space: nowrap;
 }
 .disabled {
   color: $black;
