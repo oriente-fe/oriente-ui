@@ -57,6 +57,8 @@ export default {
         behavior: 'smooth',
         left: offset
       })
+
+      this.$emit('click', name)
     }
   }
 }
@@ -104,7 +106,7 @@ Usage
 ```
 <template>
   <div :style="{width: '300px'}">
-    <Tabs :names="names">
+    <Tabs :names="names" @click="log">
       <div slot="All">All</div>
       <div slot="Confirmed">Confirmed</div>
       <div slot="Completed">Completed</div>
@@ -125,6 +127,11 @@ export default {
         'Failed',
         'Cancelled'
       ]
+    }
+  },
+  methods: {
+    log(name) {
+      console.log(name)
     }
   }
 }
