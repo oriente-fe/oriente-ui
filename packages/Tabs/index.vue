@@ -63,14 +63,13 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~/styles/_variables.scss';
-@import '~/styles/extend/flexbox.scss';
+@import '~/styles/_all.scss';
 
 .tabs {
   @extend %flex-default;
 
   overflow-x: scroll;
-  width: 300px;
+  background: $white;
 
   &::-webkit-scrollbar {
     display: none;
@@ -82,9 +81,10 @@ export default {
   font-size: $fs-12;
   font-weight: $fw-regular;
   white-space: nowrap;
-  padding: $spacing-2 $spacing-1;
-  margin: 0 $spacing-1;
+  padding: $spacing-2;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
+  -webkit-tap-highlight-color: transparent;
 
   &:last-of-type {
     margin: 0;
@@ -103,13 +103,15 @@ Usage
 
 ```
 <template>
-  <Tabs :names="names">
-    <div slot="All">All</div>
-    <div slot="Confirmed">Confirmed</div>
-    <div slot="Completed">Completed</div>
-    <div slot="Failed">Failed</div>
-    <div slot="Cancelled">Cancelled</div>
-  </Tabs>
+  <div :style="{width: '300px'}">
+    <Tabs :names="names">
+      <div slot="All">All</div>
+      <div slot="Confirmed">Confirmed</div>
+      <div slot="Completed">Completed</div>
+      <div slot="Failed">Failed</div>
+      <div slot="Cancelled">Cancelled</div>
+    </Tabs>
+  </div>
 </template>
 
 <script>
