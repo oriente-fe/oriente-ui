@@ -36,11 +36,6 @@ export default {
   background-color: $gray;
   border-radius: 2px;
   padding: 1px $spacing-1;
-  text-transform: lowercase;
-
-  &:first-letter {
-    text-transform: uppercase;
-  }
 
   &.secondary {
     background-color: $secondary;
