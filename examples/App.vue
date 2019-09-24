@@ -149,8 +149,6 @@ plugins: [
           Content
         </Modal>
       </div>
-      <h2>Price</h2>
-      <Price :originalPrice="100" :price="10" currency="USD" size="2" />
       <h2>SlideUpDialog</h2>
       <div>
         <Button
