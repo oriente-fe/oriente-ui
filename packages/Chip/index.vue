@@ -13,15 +13,14 @@ export default {
      */
     styleType: {
       type: String,
-      default: 'primary',
+      default: 'reminder',
       validator: val =>
         [
-          'primary',
-          'secondary',
+          'reminder',
+          'processing',
           'success',
           'cancel',
-          'error',
-          'reverse-warn'
+          'danger'
         ].includes(val)
     }
   }
@@ -29,43 +28,57 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~/styles/_variables.scss';
+@import '~/styles/_all.scss';
+
 .label-chips {
   font-size: $fs-12;
+  line-height: 1.67;
   color: $white;
   background-color: $gray;
   border-radius: 2px;
-  padding: 1px $spacing-1;
+  padding: 0 6px;
 
-  &.secondary {
-    background-color: $secondary;
+  &.reminder {
+    background-color: $reminder;
+  }
+
+  &.processing {
+    background-color: $processing;
   }
 
   &.success {
     background-color: $success;
   }
 
-  &.primary {
-    background-color: $primary;
-  }
-
   &.cancel {
     background-color: $cancel;
   }
 
-  &.error {
-    background-color: $fail;
-  }
-  &.reverse-warn {
-    color: $warn;
-    border: 1px solid $warn;
-    background-color: transparent;
+  &.danger {
+    background-color: $danger;
   }
 }
 </style>
 
 <docs>
-Completed, Paid, Delivered
+
+Reminder
+
+```jsx
+<Chip style-type="reminder">
+Confirmed
+</Chip>
+```
+
+Processing
+
+```jsx
+<Chip style-type="processing">
+Pending
+</Chip>
+```
+
+Success
 
 ```jsx
 <Chip style-type="success">
@@ -73,15 +86,7 @@ Completed
 </Chip>
 ```
 
-Confirmed, In Progress
-
-```jsx
-<Chip style-type="primary">
-Confirmed
-</Chip>
-```
-
-Cancelled, Unfullfilled, Expired
+Cancel
 
 ```jsx
 <Chip style-type="cancel">
@@ -89,19 +94,11 @@ Cancelled
 </Chip>
 ```
 
-Unpaid
+Danger
 
 ```jsx
-<Chip style-type="error">
-Unpaid
-</Chip>
-```
-
-Reverse Warn
-
-```jsx
-<Chip style-type="reverse-warn">
-Reverse Warn
+<Chip style-type="danger">
+Failed
 </Chip>
 ```
 </docs>
