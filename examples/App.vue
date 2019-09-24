@@ -48,7 +48,7 @@ plugins: [
       >
       <h1>Demo</h1>
       <h2>Alert</h2>
-      <Alert>
+      <Alert style-type="reminder">
         This is a alert
       </Alert>
       <h2>Button</h2>
@@ -56,16 +56,24 @@ plugins: [
         Button
       </Button>
       <h2>Chip</h2>
+      <Chip style-type="reminder">
+        Reminder
+      </Chip>
+      &nbsp;
+      <Chip style-type="processing">
+        Processing
+      </Chip>
+      &nbsp;
       <Chip style-type="success">
-        success
+        Success
       </Chip>
       &nbsp;
-      <Chip style-type="primary">
-        primary
+      <Chip style-type="cancel">
+        Cancel
       </Chip>
       &nbsp;
-      <Chip style-type="error">
-        error
+      <Chip style-type="danger">
+        Danger
       </Chip>
       <h2>ConfirmDialog</h2>
       <div>
