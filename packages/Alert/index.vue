@@ -48,7 +48,7 @@ export default {
   @extend %flex-center;
   justify-content: flex-start;
 
-  width: calc(100% - #{$spacing-4});
+  width: 100%;
   font-size: $fs-12;
   color: $white;
   padding: 7px;
