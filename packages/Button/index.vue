@@ -29,13 +29,7 @@ export default {
       type: String,
       default: 'default',
       validator: value => {
-        return [
-          'default',
-          'primary',
-          'secondary',
-          'reverse-secondary',
-          'normal'
-        ].includes(value)
+        return ['default', 'primary', 'secondary', 'action'].includes(value)
       }
     }
   }
@@ -60,91 +54,131 @@ export default {
   padding: 0;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .primary {
   color: $white;
-  @include linear-gradient(45deg, #ff9436 30%, #ff6600 60%);
-  font-weight: bold;
+  background: $primary;
   &:active {
-    filter: brightness(0.95);
+    background: $primary-dark;
+    opacity: 1;
     transition: 0.3s;
   }
   &:disabled {
-    background: rgba($black, 0.15);
+    opacity: 0.4;
   }
 }
 
 .secondary {
-  color: #266bb7;
+  color: $primary;
   background: $white;
-  border: solid 1px #266bb7;
+  border: solid 1px $primary;
   &:active {
-    background: #e8f3ff;
+    background: $primary-light;
+    opacity: 1;
     transition: 0.3s;
   }
   &:disabled {
-    color: rgba($black, 0.2);
-    border: solid 1px rgba($black, 0.15);
+    opacity: 0.4;
   }
 }
 
-.normal {
-  background: #fff;
-}
-
-.reverse-secondary {
+.action {
   color: $white;
-  background: #266bb7;
+  background: $secondary;
+  &:active {
+    background: $secondary-dark;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 </style>
 
 <docs>
-Default
-
-```jsx
-<Button style-type="default">&lt;</Button>
-```
-
 Primary
 
 ```jsx
-<Button style-type="primary">Primary</Button>
+<div v-bind:style="{display:'flex'}">
+  <Button style-type="primary">Primary</Button>
+  &nbsp;
+  <Button style-type="primary" disabled>Primary</Button>
+</div>
 ```
 
 Secondary
 
 ```jsx
-<Button style-type="secondary">Secondary</Button>
+<div v-bind:style="{display:'flex'}">
+  <Button style-type="secondary">Secondary</Button>
+  &nbsp;
+  <Button style-type="secondary" disabled>Secondary</Button>
+</div>
 ```
 
-Normal
+Action
+
+```jsx
+<div v-bind:style="{display:'flex'}">
+  <Button style-type="action">Action</Button>
+  &nbsp;
+  <Button style-type="action" disabled>Action</Button>
+</div>
+```
+
+Default
 
 ```jsx
 <template>
-  <Button style-type="normal">
-    <div slot="icon" v-html="icon" v-bind:style="{width: '24px', height: '24px'}" />
-    <div slot="default">
-      Back
+  <div>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <div v-bind:style="{display:'flex'}">
+      <Button style-type="default">
+        <i class="fas fa-times"></i>
+      </Button>
+      &nbsp;
+      <Button style-type="default">
+        <i slot="icon" class="fas fa-long-arrow-alt-left"></i>
+        <div slot="default">
+          &nbsp;Back
+        </div>
+      </Button>
     </div>
-  </Button>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      icon: require('~/assets/ic_back.svg')
+      backIcon: require('~/assets/ic_back.svg'),
+      closeIcon: require('~/assets/ic_close.svg')
     }
   }
 }
 </script>
-```
 
-Reverse Secondary
-
-```jsx
-<Button style-type="reverse-secondary">Reverse Secondary</Button>
+<style lang="scss" scoped>
+.close-icon svg {
+  width: 16px;
+  height: 16px;
+}
+.back-icon > svg {
+  width: 24px;
+  height: 24px;
+}
+</style>
 ```
 
 </docs>

@@ -114,6 +114,7 @@ export default {
   top: 0;
   padding: 16px;
   filter: opacity(0.35);
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     cursor: pointer;
