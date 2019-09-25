@@ -15,13 +15,7 @@ export default {
       type: String,
       default: 'reminder',
       validator: val =>
-        [
-          'reminder',
-          'processing',
-          'success',
-          'cancel',
-          'danger'
-        ].includes(val)
+        ['reminder', 'processing', 'success', 'cancel', 'danger'].includes(val)
     }
   }
 }
@@ -31,8 +25,10 @@ export default {
 @import '~/styles/_all.scss';
 
 .label-chips {
+  display: inline-block;
   font-size: $fs-12;
   line-height: 1.67;
+  min-height: 20px;
   color: $white;
   background-color: $gray;
   border-radius: 2px;
