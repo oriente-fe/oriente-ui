@@ -1,7 +1,7 @@
 <template>
   <button
     :type="type"
-    :class="[$style['button'], $style[styleType]]"
+    :class="[$style['button'], $style[styleType], $style[size]]"
     @click="$emit('click', $event)"
   >
     <!-- @slot button icon -->
@@ -23,13 +23,25 @@ export default {
       default: 'button'
     },
     /**
+     * Define button size
+     */
+    size: {
+      type: String,
+      default: 'large',
+      validator: value => {
+        return ['large', 'medium'].includes(value)
+      }
+    },
+    /**
      * Define button style
      */
     styleType: {
       type: String,
       default: 'default',
       validator: value => {
-        return ['default', 'primary', 'secondary', 'action'].includes(value)
+        return ['default', 'primary', 'secondary', 'action', 'info'].includes(
+          value
+        )
       }
     }
   }
@@ -44,9 +56,7 @@ export default {
 .button {
   @extend %flex-center;
 
-  font-size: $fs-16;
   width: 100%;
-  height: 44px;
   background: transparent;
   border: 0;
   border-radius: $border-radius - 2px;
@@ -63,6 +73,16 @@ export default {
   &:disabled {
     cursor: not-allowed;
   }
+}
+
+.large {
+  font-size: $fs-16;
+  height: 48px;
+}
+
+.medium {
+  font-size: $fs-14;
+  height: 36px;
 }
 
 .primary {
@@ -104,36 +124,60 @@ export default {
     opacity: 0.4;
   }
 }
+
+.info {
+  color: #777;
+  background: $white;
+  border: 1px solid #dfdfdf;
+  &:active {
+    background: #f7f7f7;
+    opacity: 1;
+    transition: 0.3s;
+  }
+  &:disabled {
+    opacity: 0.4;
+  }
+}
 </style>
 
 <docs>
 Primary
 
 ```jsx
-<div v-bind:style="{display:'flex'}">
-  <Button style-type="primary">Primary</Button>
+<div v-bind:style="{display:'flex',alignItems:'center'}">
+  <Button style-type="primary">Primary Large</Button>
   &nbsp;
-  <Button style-type="primary" disabled>Primary</Button>
+  <Button size="medium" style-type="primary" disabled>Primary Medium</Button>
 </div>
 ```
 
 Secondary
 
 ```jsx
-<div v-bind:style="{display:'flex'}">
-  <Button style-type="secondary">Secondary</Button>
+<div v-bind:style="{display:'flex',alignItems:'center'}">
+  <Button style-type="secondary">Secondary Large</Button>
   &nbsp;
-  <Button style-type="secondary" disabled>Secondary</Button>
+  <Button size="medium" style-type="secondary" disabled>Secondary Medium</Button>
 </div>
 ```
 
 Action
 
 ```jsx
-<div v-bind:style="{display:'flex'}">
-  <Button style-type="action">Action</Button>
+<div v-bind:style="{display:'flex',alignItems:'center'}">
+  <Button style-type="action">Action Large</Button>
   &nbsp;
-  <Button style-type="action" disabled>Action</Button>
+  <Button size="medium" style-type="action" disabled>Action Medium</Button>
+</div>
+```
+
+Info
+
+```jsx
+<div v-bind:style="{display:'flex',alignItems:'center'}">
+  <Button style-type="info">Info Large</Button>
+  &nbsp;
+  <Button size="medium" style-type="info" disabled>Info Medium</Button>
 </div>
 ```
 
@@ -157,28 +201,6 @@ Default
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      backIcon: require('~/assets/ic_back.svg'),
-      closeIcon: require('~/assets/ic_close.svg')
-    }
-  }
-}
-</script>
-
-<style lang="scss" scoped>
-.close-icon svg {
-  width: 16px;
-  height: 16px;
-}
-.back-icon > svg {
-  width: 24px;
-  height: 24px;
-}
-</style>
 ```
 
 </docs>
