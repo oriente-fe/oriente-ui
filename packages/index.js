@@ -7,7 +7,6 @@ import FixedButton from './FixedButton'
 import Header from './Header'
 import Loading from './Loading'
 import Modal from './Modal'
-import Price from './Price'
 import SlideUpDialog from './SlideUpDialog'
 import StandarizedContainer from './StandarizedContainer'
 import StandarizedImage from './StandarizedImage'
@@ -24,7 +23,6 @@ const components = [
   Header,
   Loading,
   Modal,
-  Price,
   SlideUpDialog,
   StandarizedContainer,
   StandarizedImage,
