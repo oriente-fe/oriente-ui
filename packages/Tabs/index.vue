@@ -86,6 +86,7 @@ export default {
   padding: $spacing-2;
   cursor: pointer;
   border-bottom: 2px solid transparent;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 
   &:last-of-type {

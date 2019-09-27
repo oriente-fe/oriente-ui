@@ -63,6 +63,7 @@ export default {
   cursor: pointer;
   padding: 0;
   outline: none;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
 
   &:active {

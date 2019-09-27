@@ -33,6 +33,7 @@ export default {
   background-color: $gray;
   border-radius: 2px;
   padding: 0 6px;
+  user-select: none;
 
   &.reminder {
     background-color: $reminder;
