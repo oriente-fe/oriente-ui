@@ -53,6 +53,7 @@ export default {
   color: $white;
   padding: 7px;
   border-radius: 4px;
+  user-select: none;
 
   .icon {
     width: 30px;
