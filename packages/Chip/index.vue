@@ -34,6 +34,7 @@ export default {
   border-radius: 2px;
   padding: 0 6px;
   user-select: none;
+  white-space: nowrap;
 
   &.reminder {
     background-color: $reminder;
