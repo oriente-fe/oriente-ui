@@ -15,13 +15,7 @@ export default {
       type: String,
       default: 'reminder',
       validator: val =>
-        [
-          'reminder',
-          'processing',
-          'success',
-          'cancel',
-          'danger'
-        ].includes(val)
+        ['reminder', 'processing', 'success', 'cancel', 'danger'].includes(val)
     }
   }
 }
@@ -38,6 +32,7 @@ export default {
   border-radius: 2px;
   padding: 0 6px;
   user-select: none;
+  white-space: nowrap;
 
   &.reminder {
     background-color: $reminder;
