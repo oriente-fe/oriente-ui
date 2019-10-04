@@ -9,7 +9,7 @@ export default {
   name: 'Chip',
   props: {
     /**
-     * Define different chip style
+     * reminder, processing, success, cancel, danger
      */
     styleType: {
       type: String,
