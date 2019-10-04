@@ -49,7 +49,7 @@ plugins: [
       <h1>Demo</h1>
       <h2>Alert</h2>
       <Alert style-type="reminder">
-        This is a alert
+        This is an alert
       </Alert>
       <h2>Button</h2>
       <Button style-type="primary">
