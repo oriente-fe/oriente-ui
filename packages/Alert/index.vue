@@ -14,7 +14,7 @@ export default {
   name: 'Alert',
   props: {
     /**
-     * Define alert style
+     * reminder, processing, success, cancel, danger
      */
     styleType: {
       type: String,
@@ -87,6 +87,14 @@ Your order is confirmed.
 </Alert>
 ```
 
+Processing
+
+```jsx
+<Alert style-type="processing">
+Your order is being processed.
+</Alert>
+```
+
 Success
 
 ```jsx
@@ -100,6 +108,14 @@ Cancel
 ```jsx
 <Alert style-type="cancel">
 Sorry, your order was cancelled.
+</Alert>
+```
+
+Danger
+
+```jsx
+<Alert style-type="danger">
+Sorry, your order was failed.
 </Alert>
 ```
 </docs>

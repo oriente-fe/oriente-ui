@@ -16,14 +16,14 @@ export default {
   name: 'Button',
   props: {
     /**
-     * Define button type
+     * button type
      */
     type: {
       type: String,
       default: 'button'
     },
     /**
-     * Define button size
+     * large, medium
      */
     size: {
       type: String,
@@ -33,7 +33,7 @@ export default {
       }
     },
     /**
-     * Define button style
+     * default, primary, secondary, action, info
      */
     styleType: {
       type: String,
