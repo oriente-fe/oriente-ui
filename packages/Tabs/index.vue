@@ -96,7 +96,6 @@ export default {
 
 .active {
   color: $primary;
-  font-weight: $fw-bold;
   border-bottom: 2px solid $primary;
 }
 </style>

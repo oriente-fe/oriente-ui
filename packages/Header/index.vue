@@ -55,6 +55,7 @@ export default {
   height: $header-height;
   background-color: $white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .slot {
