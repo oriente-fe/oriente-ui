@@ -26,7 +26,7 @@ export default {
 
 .label-chips {
   font-size: $fs-12;
-  line-height: $fs-12 * 1.67;
+  line-height: 1.67;
   color: $white;
   background-color: $gray;
   border-radius: 2px;
