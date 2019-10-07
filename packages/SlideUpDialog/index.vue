@@ -106,6 +106,7 @@ export default {
 
 .title {
   margin: $spacing-1 0 0;
+  font-weight: bold;
 }
 
 .close {

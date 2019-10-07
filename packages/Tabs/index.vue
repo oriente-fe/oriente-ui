@@ -72,6 +72,9 @@ export default {
 
   overflow-x: scroll;
   background: $white;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 3px 4px rgba(0,0,0,0.04);
 
   &::-webkit-scrollbar {
     display: none;
