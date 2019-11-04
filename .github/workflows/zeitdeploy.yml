@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  publish-zeit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,16 +14,6 @@ jobs:
         with:
           node-version: 10
       - run: npm install
-      - run: npm run build
-
-  publish-zeit:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 8
-      - uses: actions/zeit-now@1.0.0
+      - run: npx now --prod --token $ZEIT_TOKEN
         env:
           ZEIT_TOKEN: ${{secrets.ZEIT_TOKEN}}
