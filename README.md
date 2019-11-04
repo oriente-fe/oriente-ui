@@ -2,7 +2,7 @@
 
 > A bunch of components for supporting Oriente front-end team.
 
-[DEMO](https://workspace.tonypai.now.sh)
+[DEMO](https://oriente-ui.tonypai.now.sh/)
 
 ## Features
 
@@ -12,14 +12,14 @@
 
 ## Setup
 
-```sh
+```
 $ yarn add oriente-ui
 ```
 ## Usage
 
 SPA (CSR)
 
-```js
+```javascript
 import OrienteUI from 'oriente-ui'
 import 'oriente-ui/lib/oriente-ui.css'
 
@@ -28,7 +28,7 @@ Vue.use(OrienteUI)
 
 Nuxt.js (SSR)
 
-```js
+```javascript
 // plugins/oriente-ui.js
 import OrienteUI from 'oriente-ui'
 import 'oriente-ui/lib/oriente-ui.css'
@@ -47,7 +47,7 @@ plugins: [
 
 Build library files
 
-```bash
+```
 $ yarn lib
 ```
 
@@ -55,12 +55,12 @@ $ yarn lib
 
 Start styleguidist
 
-```bash
+```
 $ yarn styleguide
 ```
 
 Start demo site
 
-```bash
+```
 $ yarn serve
 ```
