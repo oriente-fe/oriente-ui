@@ -25,11 +25,16 @@ export default {
     names: {
       type: Array,
       default: () => []
+    },
+    value: {
+      type: String,
+      default: null
     }
   },
   data() {
+    const currentTab = this.value || this.names[0]
     return {
-      currentTab: this.names[0]
+      currentTab
     }
   },
   computed: {
@@ -40,25 +45,29 @@ export default {
       return this.names.find(name => name === this.currentTab)
     }
   },
+  mounted() {
+    const index = this.names.indexOf(this.currentTab)
+    const tab = this.tabsRef.children[index]
+    this.scrollTo(tab)
+  },
   methods: {
     clickTab(target, name) {
       this.currentTab = name
-
-      const tabsLeft = this.tabsRef.offsetLeft
+      this.scrollTo(target)
+      this.$emit('click', name)
+    },
+    scrollTo(target) {
       const tabsWidth = this.tabsRef.offsetWidth
       const tabLeft = target.offsetLeft
       const tabWidth = target.offsetWidth
       const offset =
         tabLeft -
-        tabsLeft -
         Math.floor(tabsWidth / 2) +
         Math.floor(tabWidth / 2)
       this.tabsRef.scrollTo({
         behavior: 'smooth',
         left: offset
       })
-
-      this.$emit('click', name)
     }
   }
 }
@@ -109,7 +118,7 @@ Usage
 ```
 <template>
   <div :style="{width: '300px'}">
-    <Tabs :names="names" @click="log">
+    <Tabs :names="names" @click="log" value="Cancelled">
       <div slot="All">All</div>
       <div slot="Confirmed">Confirmed</div>
       <div slot="Completed">Completed</div>
