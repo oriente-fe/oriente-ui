@@ -57,20 +57,20 @@ export default {
 
 .close {
   position: absolute;
-  right: 0;
-  top: 0;
-  padding: 16px;
-  filter: opacity(0.35);
+  right: $spacing-1;
+  top: $spacing-1;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     cursor: pointer;
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 40px;
+    height: 40px;
   }
 }
+
 .title {
   @extend %card-title;
 }
