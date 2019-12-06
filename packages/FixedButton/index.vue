@@ -41,7 +41,7 @@ export default {
 @import '~/styles/_mixin.scss';
 .fixed-button {
   margin: $spacing-2 0 0;
-  height: $header-height;
+  height: 48px + $spacing-2;
 }
 .container {
   position: fixed;
@@ -51,10 +51,10 @@ export default {
   background-color: $white;
   padding: $spacing-1;
   z-index: 99;
+  box-sizing: border-box;
 }
 .button {
   width: 100%;
-  font-size: $fs-14;
 }
 </style>
 
