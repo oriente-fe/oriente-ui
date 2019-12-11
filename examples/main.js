@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/highlight'
+import javascript from 'highlight.js/lib/languages/javascript'
 import 'highlight.js/styles/railscasts.css'
+
+hljs.registerLanguage('javascript', javascript)
 
 import OrienteUI from '~/packages/index'
 
