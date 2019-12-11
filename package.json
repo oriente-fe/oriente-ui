@@ -8,6 +8,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:inspect": "INSPECT=1 vue-cli-service build",
     "lint": "vue-cli-service lint",
     "styleguide": "THEME=ph bnr styleguide",
     "styleguide:ph": "THEME=ph bnr styleguide",
