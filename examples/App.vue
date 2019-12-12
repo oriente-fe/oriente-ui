@@ -133,6 +133,13 @@ plugins: [
         <div>Center</div>
         <div slot="right">Right</div>
       </Header>
+      <h2>Input</h2>
+      <Input
+        label="Number"
+        placeholder="[0-100]"
+        :rules="[isNumber, lte0, ste100]"
+        @change="v => console.log(v)"
+      />
       <h2>Loading</h2>
       <div>
         <Button
@@ -280,6 +287,21 @@ export default {
     },
     closeToast() {
       this.isToastShown = false
+    },
+    isNumber(n) {
+      if (isNaN(n)) {
+        return 'input must be Number'
+      }
+    },
+    lte0(n) {
+      if (n < 0) {
+        return 'input must larger than or equal to 0'
+      }
+    },
+    ste100(n) {
+      if (n > 100) {
+        return 'input must smaller than or equal to 100'
+      }
     }
   }
 }
