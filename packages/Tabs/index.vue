@@ -61,9 +61,7 @@ export default {
       const tabLeft = target.offsetLeft
       const tabWidth = target.offsetWidth
       const offset =
-        tabLeft -
-        Math.floor(tabsWidth / 2) +
-        Math.floor(tabWidth / 2)
+        tabLeft - Math.floor(tabsWidth / 2) + Math.floor(tabWidth / 2)
       this.tabsRef.scrollTo({
         behavior: 'smooth',
         left: offset
@@ -83,7 +81,7 @@ export default {
   background: $white;
   position: relative;
   z-index: 1;
-  box-shadow: 0 3px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.04);
 
   &::-webkit-scrollbar {
     display: none;
