@@ -5,6 +5,7 @@ import ConfirmDialog from './ConfirmDialog'
 import Dialog from './Dialog'
 import FixedButton from './FixedButton'
 import Header from './Header'
+import Input from './Input'
 import Loading from './Loading'
 import Modal from './Modal'
 import SlideUpDialog from './SlideUpDialog'
@@ -21,6 +22,7 @@ const components = [
   Dialog,
   FixedButton,
   Header,
+  Input,
   Loading,
   Modal,
   SlideUpDialog,
