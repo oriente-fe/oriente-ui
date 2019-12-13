@@ -45,6 +45,12 @@ plugins: [
 
 ## Build
 
+Build assets for demo site with bundle analyzer
+
+```
+$ yarn build:inspect
+```
+
 Build library files
 
 ```
