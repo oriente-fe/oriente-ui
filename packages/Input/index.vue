@@ -5,6 +5,7 @@
       <input
         type="text"
         :class="[$style['input'], { [$style['error']]: error }]"
+        :value="value"
         :placeholder="placeholder"
         @change="handleChange"
         @keyup="handleKeyup"
@@ -33,6 +34,13 @@ export default {
       default: ''
     },
     /**
+     * default value
+     */
+    defaultValue: {
+      type: String,
+      default: ''
+    },
+    /**
      * rules for validation
      */
     rules: {
@@ -42,6 +50,7 @@ export default {
   },
   data() {
     return {
+      value: this.defaultValue,
       error: ''
     }
   },
@@ -133,6 +142,7 @@ Regular
   <Input
     label="Text"
     placeholder="Placeholder"
+    defaultValue="default value"
     @keyup="log"
   />
 </template>
