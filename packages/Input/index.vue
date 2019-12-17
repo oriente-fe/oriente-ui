@@ -5,10 +5,10 @@
       <input
         type="text"
         :class="[$style['input'], { [$style['error']]: error }]"
-        :value="value"
         :placeholder="placeholder"
         @change="handleChange"
         @keyup="handleKeyup"
+        v-model="value"
       />
     </label>
     <div v-if="error" :class="$style['error-text']">{{ error }}</div>
