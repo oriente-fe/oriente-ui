@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - greenkeeper/*
 
 jobs:
   publish-zeit:
