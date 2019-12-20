@@ -1,21 +1,22 @@
-name: GitHub Action for Zeit
+name: CI
 
 on:
   push:
     branches:
       - master
+      - greenkeeper/*
 
 jobs:
-  publish-zeit:
+  run-ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - name: Deploy to zeit
+      - name: Run Lighthouse CI
         run: |
           npm install
-          npx now --prod --token $ZEIT_TOKEN
-        env:
-          ZEIT_TOKEN: ${{secrets.ZEIT_TOKEN}}
+          npm run build
+          npm install -g @lhci/cli@0.3.x
+          lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed!"
