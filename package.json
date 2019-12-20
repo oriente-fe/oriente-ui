@@ -45,7 +45,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^6.0.1",
     "node-sass": "^4.9.3",
-    "sass-loader": "8.0.0",
+    "sass-loader": "7.3.1",
     "svg-inline-loader": "^0.8.0",
     "vue-cli-plugin-styleguidist": "^4.2.2",
     "vue-template-compiler": "^2.5.17",
@@ -78,5 +78,10 @@
     "ie >= 8",
     "iOS >= 10",
     "Android >= 4"
-  ]
+  ],
+  "greenkeeper": {
+    "ignore": [
+      "sass-loader"
+    ]
+  }
 }
