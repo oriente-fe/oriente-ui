@@ -1,5 +1,7 @@
 # Oriente UI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tpai/oriente-ui.svg)](https://greenkeeper.io/)
+
 > A bunch of components for supporting Oriente front-end team.
 
 [DEMO](https://oriente-ui.tonypai.now.sh/)
