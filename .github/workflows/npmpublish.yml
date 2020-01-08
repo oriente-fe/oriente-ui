@@ -24,6 +24,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       - run: |
           npm config set //npm.pkg.github.com/:_authToken=$GITHUB_TOKEN
-          npm publish --registry=https://npm.pkg.github.com/@tpai
+          npm publish --registry=https://npm.pkg.github.com/@oriente-fe
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
