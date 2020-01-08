@@ -3,7 +3,7 @@
     <label :class="$style['label']">
       {{ label }}
       <input
-        type="text"
+        :type="type"
         :class="[$style['input'], { [$style['error']]: error }]"
         :placeholder="placeholder"
         @change="handleChange"
@@ -19,6 +19,13 @@
 export default {
   name: 'Input',
   props: {
+    /**
+     * input type
+     */
+    type: {
+      type: String,
+      default: 'text'
+    },
     /**
      * label text
      */
@@ -163,6 +170,7 @@ With validation
 ```jsx
 <template>
   <Input
+    type="number"
     label="Number"
     placeholder="[0-100]"
     :rules="[isNumber, lte0, ste100]"

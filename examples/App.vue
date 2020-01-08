@@ -135,6 +135,7 @@ plugins: [
       </Header>
       <h2>Input</h2>
       <Input
+        type="number"
         label="Number"
         placeholder="[0-100]"
         :rules="[isNumber, lte0, ste100]"
