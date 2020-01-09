@@ -6,6 +6,17 @@ module.exports = {
   components: 'packages/[A-Z]*/index.vue',
   usageMode: 'expand',
   exampleMode: 'expand',
+  template: {
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href:
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'
+        }
+      ]
+    }
+  },
   webpackConfig: {
     devServer: {
       hot: false,
