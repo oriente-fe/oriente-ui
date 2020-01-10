@@ -186,20 +186,17 @@ Default
 
 ```jsx
 <template>
-  <div>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
-    <div v-bind:style="{display:'flex'}">
-      <Button style-type="default">
-        <i class="fas fa-times"></i>
-      </Button>
-      &nbsp;
-      <Button style-type="default">
-        <i slot="icon" class="fas fa-long-arrow-alt-left"></i>
-        <div slot="default">
-          &nbsp;Back
-        </div>
-      </Button>
-    </div>
+  <div v-bind:style="{display:'flex'}">
+    <Button style-type="default">
+      <i class="fas fa-times"></i>
+    </Button>
+    &nbsp;
+    <Button style-type="default">
+      <i slot="icon" class="fas fa-long-arrow-alt-left"></i>
+      <div slot="default">
+        &nbsp;Back
+      </div>
+    </Button>
   </div>
 </template>
 ```

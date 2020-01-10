@@ -141,6 +141,15 @@ plugins: [
         :rules="[isNumber, lte0, ste100]"
         @change="v => console.log(v)"
       />
+      <br />
+      <Input styleType="box" placeholder="Search something...">
+        <div slot="prependIcon">
+          <i class="fas fa-search"></i>
+        </div>
+        <div slot="appendIcon">
+          <i class="fas fa-times-circle"></i>
+        </div>
+      </Input>
       <h2>Loading</h2>
       <div>
         <Button
