@@ -19,7 +19,7 @@
           ]"
           :placeholder="placeholder"
           @change="handleChange"
-          @keyup="handleKeyup"
+          @input="handleInput"
           v-model="internalValue"
         />
         <div v-if="$slots.appendIcon" :class="$style['icon']">
@@ -113,12 +113,13 @@ export default {
        */
       this.$emit('change', e.target.value)
     },
-    handleKeyup(e) {
+    handleInput(e) {
       /**
-       * handle keyup event and return value
+       * handle input event and return value
        *
        * @type {function}
        */
+      this.$emit('input', e.target.value)
       this.$emit('keyup', e.target.value)
     },
     checkIfError(value) {
@@ -243,7 +244,7 @@ Regular
     label="Text"
     placeholder="Placeholder"
     defaultValue="default value"
-    @keyup="log"
+    @input="log"
   />
 </template>
 
