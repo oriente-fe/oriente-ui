@@ -174,6 +174,22 @@ plugins: [
           Content
         </Modal>
       </div>
+      <h2>SearchNav</h2>
+      <SearchNav
+        value="default value"
+        placeholder="Type anything..."
+        :history="Array.from(history).reverse()"
+        @open="openSearchNav"
+        @back="searchNavClickback"
+        @change="searchNavOnChange"
+        @submit="searchNavOnSubmit"
+        @cleanSearch="searchNavCleanSearch"
+        @deleteHistory="searchNavDeleteHistory"
+      >
+        <div slot="appendSection">
+          👌
+        </div>
+      </SearchNav>
       <h2>SlideUpDialog</h2>
       <div>
         <Button
@@ -251,7 +267,8 @@ export default {
       isLoading: false,
       isModalShown: false,
       isSlideUpDialogShown: false,
-      isToastShown: false
+      isToastShown: false,
+      history: new Set(['Airpods', 'iPhone', 'Macbook Pro'])
     }
   },
   methods: {
@@ -312,6 +329,28 @@ export default {
       if (n > 100) {
         return 'input must smaller than or equal to 100'
       }
+    },
+    openSearchNav() {
+      console.log('click open')
+    },
+    searchNavClickback() {
+      console.log('click back')
+    },
+    searchNavOnChange(text) {
+      console.log('change', text)
+    },
+    searchNavOnSubmit(text) {
+      this.history.add(text)
+      this.$forceUpdate()
+      console.log('submit', text)
+    },
+    searchNavCleanSearch() {
+      console.log('clean search')
+    },
+    searchNavDeleteHistory() {
+      this.history.clear()
+      this.$forceUpdate()
+      console.log('delete history')
     }
   }
 }
