@@ -210,6 +210,27 @@ plugins: [
           </div>
         </SlideUpDialog>
       </div>
+      <h2>SlideUpView</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="isSlideUpViewShown = true"
+          :style="{ border: '1px solid #333' }"
+        >
+          Open SlideUpView
+        </Button>
+        <SlideUpView v-model="isSlideUpViewShown" title="Title">
+          Content
+          <Button
+            slot="footer"
+            styleType="primary"
+            style="border-radius: 0"
+            @click="isSlideUpViewShown = false"
+          >
+            Close Button
+          </Button>
+        </SlideUpView>
+      </div>
       <h2>StandarizedContainer</h2>
       <h3>
         Define any aspect ratio such as <strong>16:9</strong>, element stays in
@@ -264,6 +285,7 @@ export default {
       isLoading: false,
       isModalShown: false,
       isSlideUpDialogShown: false,
+      isSlideUpViewShown: false,
       isToastShown: false,
       history: new Set(['Airpods', 'iPhone', 'Macbook Pro'])
     }
