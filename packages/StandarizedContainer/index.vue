@@ -65,7 +65,7 @@ export default {
     <input type="number" step="10" v-model="widthValue" size="4" />px
     <div class="row" :style="{width}">
       <StandarizedContainer ratio="1:1">
-        <img src="https://picsum.photos/id/47/1000/1000" />
+        <img src="https://placehold.it/1000x1000" />
       </StandarizedContainer>
     </div>
     <div class="row" :style="{width}">

@@ -226,10 +226,7 @@ plugins: [
         keep it.
       </h3>
       <section>
-        <StandarizedImage
-          url="https://picsum.photos/id/47/1000/1000"
-          ratio="16:9"
-        />
+        <StandarizedImage url="https://placehold.it/1000x1000" ratio="16:9" />
       </section>
       <h2>Tabs</h2>
       <Tabs :names="['All', 'Confirmed', 'Completed', 'Failed', 'Cancelled']">
