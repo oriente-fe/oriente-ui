@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 import _ from 'lodash'
 import Input from '@/Input'
 
@@ -112,6 +113,10 @@ export default {
     isShown(val) {
       if (val) {
         this.$refs.nav.querySelector('input').focus()
+        disableBodyScroll(this.$refs.nav.parentNode)
+      } else {
+        this.$refs.nav.querySelector('input').blur()
+        enableBodyScroll(this.$refs.nav.parentNode)
       }
     }
   },
