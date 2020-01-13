@@ -10,6 +10,7 @@ import Loading from './Loading'
 import Modal from './Modal'
 import SearchNav from './SearchNav'
 import SlideUpDialog from './SlideUpDialog'
+import SlideUpView from './SlideUpView'
 import StandarizedContainer from './StandarizedContainer'
 import StandarizedImage from './StandarizedImage'
 import Tabs from './Tabs'
@@ -28,6 +29,7 @@ const components = [
   Modal,
   SearchNav,
   SlideUpDialog,
+  SlideUpView,
   StandarizedContainer,
   StandarizedImage,
   Tabs,
