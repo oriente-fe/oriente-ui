@@ -29,6 +29,7 @@
     "lib"
   ],
   "dependencies": {
+    "body-scroll-lock": "^2.6.4",
     "highlight.js": "^9.15.10",
     "vue": "^2.5.17"
   },

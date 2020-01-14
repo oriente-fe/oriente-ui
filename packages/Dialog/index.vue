@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="main"
     v-if="value"
     :class="$style.modal"
     @click="close"
@@ -33,6 +34,7 @@
 </template>
 
 <script>
+import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 export default {
   name: 'Dialog',
   props: {
@@ -59,6 +61,17 @@ export default {
     persistent: {
       type: Boolean,
       default: false
+    }
+  },
+  watch: {
+    value(val) {
+      if (val) {
+        this.$nextTick(() => {
+          disableBodyScroll(this.$refs.main)
+        })
+      } else {
+        enableBodyScroll(this.$refs.main)
+      }
     }
   },
   methods: {

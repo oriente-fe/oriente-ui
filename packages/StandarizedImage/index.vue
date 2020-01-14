@@ -41,10 +41,10 @@ export default {
     <label>Width:</label>
     <input type="number" step="10" v-model="widthValue" size="4" />px
     <div class="row" :style="{width}">
-      <StandarizedImage url="https://picsum.photos/id/47/1000/1000" ratio="1:1" />
+      <StandarizedImage url="https://placehold.it/1000x1000" ratio="1:1" />
     </div>
     <div class="row" :style="{width}">
-      <StandarizedImage url="https://picsum.photos/id/48/1000/1000" ratio="16:9" />
+      <StandarizedImage url="https://placehold.it/1000x1000" ratio="16:9" />
     </div>
   </div>
 </template>
