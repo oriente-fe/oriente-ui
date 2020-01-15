@@ -1,4 +1,5 @@
 import Alert from './Alert'
+import BackToTopButton from './BackToTopButton'
 import Button from './Button'
 import Chip from './Chip'
 import ConfirmDialog from './ConfirmDialog'
@@ -18,6 +19,7 @@ import Toast from './Toast'
 
 const components = [
   Alert,
+  BackToTopButton,
   Button,
   Chip,
   ConfirmDialog,
