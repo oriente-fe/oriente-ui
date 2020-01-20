@@ -230,6 +230,7 @@ export default {
 .clean {
   button {
     color: $black-50;
+    background: transparent;
   }
 }
 
