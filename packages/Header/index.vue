@@ -71,7 +71,7 @@ export default {
 .middle {
   @extend %flex-center;
 
-  flex: 2;
+  flex: 10;
   font-size: $fs-18;
   font-weight: $fw-regular;
 }
