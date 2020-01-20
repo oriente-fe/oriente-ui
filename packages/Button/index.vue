@@ -1,7 +1,12 @@
 <template>
   <button
     :type="type"
-    :class="[$style['button'], $style[styleType], $style[size]]"
+    :class="[
+      $style['button'],
+      $style[styleType],
+      $style[size],
+      { [$style.round]: round }
+    ]"
     @click="$emit('click', $event)"
   >
     <!-- @slot button icon -->
@@ -43,6 +48,13 @@ export default {
           value
         )
       }
+    },
+    /**
+     * whether is circled
+     */
+    round: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -76,14 +88,32 @@ export default {
   }
 }
 
+@mixin round($size) {
+  &.round {
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+  }
+}
+
 .large {
+  $size: 48px;
+  @include round($size);
+
   font-size: $fs-16;
-  height: 48px;
+  height: $size;
 }
 
 .medium {
+  $size: 36px;
+  @include round($size);
+
   font-size: $fs-14;
-  height: 36px;
+  height: $size;
+}
+
+.default {
+  background: $white;
 }
 
 .primary {
@@ -179,6 +209,19 @@ Info
   <Button style-type="info">Info Large</Button>
   &nbsp;
   <Button size="medium" style-type="info" disabled>Info Medium</Button>
+</div>
+```
+
+Round
+
+```jsx
+<div v-bind:style="{display:'flex',alignItems:'center',justifyContent:'space-evenly'}">
+  <Button style-type="info" round>
+    <i slot="icon" class="fas fa-times"></i>
+  </Button>
+  <Button size="medium" round style-type="info" disabled>
+    <i slot="icon" class="fas fa-times"></i>
+  </Button>
 </div>
 ```
 

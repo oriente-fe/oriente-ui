@@ -110,6 +110,18 @@ plugins: [
           </div>
         </Dialog>
       </div>
+      <h2>BackToTopButton</h2>
+      <div>
+        <Button
+          style-type="default"
+          @click="isBackToTopButtonShown = !isBackToTopButtonShown"
+          :style="{ border: '1px solid #333' }"
+        >
+          Toggle Back to Top Button
+        </Button>
+        <BackToTopButton v-if="isBackToTopButtonShown" />
+      </div>
+
       <h2>FixedButton</h2>
       <div>
         <Button
@@ -281,6 +293,7 @@ export default {
     return {
       isDialogShown: false,
       isConfirmDialogShown: false,
+      isBackToTopButtonShown: true,
       isFixedButtonShown: false,
       isLoading: false,
       isModalShown: false,
