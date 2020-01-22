@@ -201,6 +201,7 @@ export default {
 }
 
 .box-bg {
+  box-sizing: content-box;
   width: calc(100% - #{2 * $spacing-1});
   background: $black-09;
   padding: $spacing-1;
