@@ -11,7 +11,10 @@
         </div>
       </Input>
     </div>
-    <div :class="[$style['container'], { [$style['hide']]: !isShown }]">
+    <div
+      v-if="isExist"
+      :class="[$style['container'], { [$style['hide']]: !isShown }]"
+    >
       <div ref="nav" :class="$style['nav']">
         <div :class="$style['back']">
           <Button style-type="default" @click="clickBack">
@@ -106,17 +109,25 @@ export default {
   data() {
     return {
       search: this.value,
+      isExist: false,
       isShown: false
     }
   },
   watch: {
-    isShown(val) {
+    isExist(val) {
       if (val) {
-        this.$refs.nav.querySelector('input').focus()
-        disableBodyScroll(this.$refs.nav.parentNode)
-      } else {
+        this.$nextTick(() => {
+          this.isShown = true
+          this.$refs.nav.querySelector('input').focus()
+          disableBodyScroll(this.$refs.nav.parentNode)
+        })
+      }
+    },
+    isShown(val) {
+      if (!val) {
         this.$refs.nav.querySelector('input').blur()
         enableBodyScroll(this.$refs.nav.parentNode)
+        setTimeout(() => (this.isExist = false), 300)
       }
     }
   },
@@ -137,7 +148,7 @@ export default {
       this.$emit('submit', text || this.search)
     },
     clickFake() {
-      this.isShown = true
+      this.isExist = true
       /**
        * click fake input callback
        */
