@@ -2,7 +2,14 @@
   <div :class="$style['container']">
     <label :class="$style['label']">
       {{ label }}
-      <div :class="[$style['input'], $style[size], $style[`${styleType}-bg`]]">
+      <div
+        :class="[
+          $style['input'],
+          $style[size],
+          $style[`${styleType}-bg`],
+          { [$style['error']]: !!error }
+        ]"
+      >
         <div
           v-if="$slots.prependIcon"
           :class="[$style['icon'], $style['prepend']]"
@@ -12,11 +19,7 @@
         </div>
         <input
           :type="type"
-          :class="[
-            $style['input-self'],
-            $style[styleType],
-            { [$style['error']]: error }
-          ]"
+          :class="[$style['input-self'], $style[styleType]]"
           :placeholder="placeholder"
           @change="handleChange"
           @input="handleInput"
@@ -215,6 +218,10 @@ export default {
   &:focus-within {
     border-color: $black-09;
   }
+
+  &.error {
+    border-color: $danger;
+  }
 }
 
 .box {
@@ -231,16 +238,16 @@ export default {
   box-sizing: border-box;
   background: $black-09;
   padding: $spacing-1;
-  border: 0;
+  border: 1px solid #eee;
   border-radius: 5px;
 
   &:focus-within {
     background: #eee;
   }
-}
 
-.error {
-  border-color: $danger;
+  &.error {
+    border-color: $danger;
+  }
 }
 
 .error-text {
@@ -312,6 +319,8 @@ With validation
     type="number"
     label="Number"
     placeholder="[0-100]"
+    size="large"
+    styleType="box"
     :rules="[isNumber, lte0, ste100]"
     @change="log"
   />
