@@ -180,8 +180,8 @@ export default {
 
 .regular-bg {
   width: 100%;
+  box-sizing: border-box;
   background: transparent;
-  padding: $spacing-2 0;
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid $gray;
@@ -201,8 +201,8 @@ export default {
 }
 
 .box-bg {
-  box-sizing: content-box;
-  width: calc(100% - #{2 * $spacing-1});
+  width: 100%;
+  box-sizing: border-box;
   background: $black-09;
   padding: $spacing-1;
   border: 0;
