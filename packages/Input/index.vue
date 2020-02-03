@@ -2,7 +2,14 @@
   <div :class="$style['container']">
     <label :class="$style['label']">
       {{ label }}
-      <div :class="[$style['input'], $style[size], $style[`${styleType}-bg`]]">
+      <div
+        :class="[
+          $style['input'],
+          $style[size],
+          $style[`${styleType}-bg`],
+          { [$style['error']]: !!error }
+        ]"
+      >
         <div
           v-if="$slots.prependIcon"
           :class="[$style['icon'], $style['prepend']]"
@@ -12,13 +19,11 @@
         </div>
         <input
           :type="type"
-          :class="[
-            $style['input-self'],
-            $style[styleType],
-            { [$style['error']]: error }
-          ]"
+          :class="[$style['input-self'], $style[styleType]]"
           :placeholder="placeholder"
+          @blur="handleBlur"
           @change="handleChange"
+          @focus="handleFocus"
           @input="handleInput"
           v-model="internalValue"
         />
@@ -87,11 +92,19 @@ export default {
     rules: {
       type: Array,
       default: () => []
+    },
+    /**
+     * format value
+     */
+    format: {
+      type: Function,
+      default: v => v
     }
   },
   data() {
     return {
-      lazyValue: this.value,
+      pureValue: this.value,
+      lazyValue: this.format(this.value),
       error: ''
     }
   },
@@ -107,12 +120,17 @@ export default {
   },
   watch: {
     value(val) {
-      this.lazyValue = val
+      this.pureValue = val
+      this.internalValue = this.format(val)
     }
   },
   methods: {
-    handleChange(e) {
-      if (e.target.value === '' || this.checkIfError(e.target.value)) {
+    handleBlur() {
+      this.pureValue = this.internalValue
+      this.internalValue = this.format(this.internalValue)
+    },
+    handleChange() {
+      if (this.internalValue === '' || this.checkIfError(this.internalValue)) {
         return
       }
 
@@ -121,16 +139,19 @@ export default {
        *
        * @type {function}
        */
-      this.$emit('change', e.target.value)
+      this.$emit('change', this.internalValue)
     },
-    handleInput(e) {
+    handleFocus() {
+      this.internalValue = this.pureValue
+    },
+    handleInput() {
       /**
        * handle input event and return value
        *
        * @type {function}
        */
-      this.$emit('input', e.target.value)
-      this.$emit('keyup', e.target.value)
+      this.$emit('input', this.internalValue)
+      this.$emit('keyup', this.internalValue)
     },
     checkIfError(value) {
       const errors = this.rules.reduce((result, rule) => {
@@ -215,6 +236,10 @@ export default {
   &:focus-within {
     border-color: $black-09;
   }
+
+  &.error {
+    border-color: $danger;
+  }
 }
 
 .box {
@@ -231,16 +256,16 @@ export default {
   box-sizing: border-box;
   background: $black-09;
   padding: $spacing-1;
-  border: 0;
+  border: 1px solid #eee;
   border-radius: 5px;
 
   &:focus-within {
     background: #eee;
   }
-}
 
-.error {
-  border-color: $danger;
+  &.error {
+    border-color: $danger;
+  }
 }
 
 .error-text {
@@ -304,15 +329,19 @@ Box
 </Input>
 ```
 
-With validation
+With formation and validation
 
 ```jsx
 <template>
   <Input
-    type="number"
+    type="text"
     label="Number"
-    placeholder="[0-100]"
-    :rules="[isNumber, lte0, ste100]"
+    placeholder="[0-10000]"
+    size="large"
+    styleType="box"
+    value="9876"
+    :rules="[isNumber, lte0, ste10000]"
+    :format="format"
     @change="log"
   />
 </template>
@@ -333,10 +362,13 @@ export default {
         return 'input must larger than or equal to 0'
       }
     },
-    ste100(n) {
-      if (n > 100) {
-        return 'input must smaller than or equal to 100'
+    ste10000(n) {
+      if (n > 10000) {
+        return 'input must smaller than or equal to 10000'
       }
+    },
+    format(v) {
+      return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
   }
 }
