@@ -49,6 +49,7 @@ export default {
   justify-content: flex-start;
 
   width: 100%;
+  box-sizing: border-box;
   font-size: $fs-12;
   color: $white;
   padding: 7px;

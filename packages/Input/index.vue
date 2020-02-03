@@ -2,7 +2,7 @@
   <div :class="$style['container']">
     <label :class="$style['label']">
       {{ label }}
-      <div :class="[$style['input'], $style[`${styleType}-bg`]]">
+      <div :class="[$style['input'], $style[size], $style[`${styleType}-bg`]]">
         <div
           v-if="$slots.prependIcon"
           :class="[$style['icon'], $style['prepend']]"
@@ -42,6 +42,16 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    /**
+     * large, medium
+     */
+    size: {
+      type: String,
+      default: 'large',
+      validator: value => {
+        return ['large', 'medium'].includes(value)
+      }
     },
     /**
      * style type (e.g. regular, box)
@@ -148,6 +158,22 @@ export default {
   width: 100%;
 }
 
+.large {
+  height: 48px;
+
+  > input {
+    font-size: $fs-16;
+  }
+}
+
+.medium {
+  height: 36px;
+
+  > input {
+    font-size: $fs-14;
+  }
+}
+
 .label {
   width: 100%;
   color: $black-50;
@@ -180,8 +206,8 @@ export default {
 
 .regular-bg {
   width: 100%;
+  box-sizing: border-box;
   background: transparent;
-  padding: $spacing-2 0;
   border: 0;
   border-radius: 0;
   border-bottom: 1px solid $gray;
@@ -201,8 +227,8 @@ export default {
 }
 
 .box-bg {
-  box-sizing: content-box;
-  width: calc(100% - #{2 * $spacing-1});
+  width: 100%;
+  box-sizing: border-box;
   background: $black-09;
   padding: $spacing-1;
   border: 0;
@@ -242,6 +268,7 @@ Regular
 ```jsx
 <template>
   <Input
+    size="large"
     label="Text"
     placeholder="Placeholder"
     defaultValue="default value"
@@ -263,7 +290,11 @@ export default {
 Box
 
 ```jsx
-<Input styleType="box" placeholder="Search something...">
+<Input
+  size="medium"
+  styleType="box"
+  placeholder="Search something..."
+>
   <div slot="prependIcon">
     <i class="fas fa-search"></i>
   </div>
