@@ -135,6 +135,9 @@ export default {
         enableBodyScroll(this.$refs.nav.parentNode)
         setTimeout(() => (this.isExist = false), 300)
       }
+    },
+    value(val) {
+      this.search = val
     }
   },
   methods: {
