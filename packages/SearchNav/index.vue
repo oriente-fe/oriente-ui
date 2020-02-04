@@ -2,7 +2,12 @@
   <div>
     <div :class="$style['fake']" @click="clickFake">
       <div :class="$style['mask']"></div>
-      <Input styleType="box" :placeholder="placeholder" :value="search">
+      <Input
+        size="medium"
+        styleType="box"
+        :placeholder="placeholder"
+        :value="search"
+      >
         <div slot="prependIcon">
           <div
             :class="$style['icon']"
@@ -26,6 +31,7 @@
         </div>
         <form @submit.prevent="() => submit(search)" :class="$style['form']">
           <Input
+            size="medium"
             styleType="box"
             :placeholder="placeholder"
             :value="search"
