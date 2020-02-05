@@ -127,6 +127,12 @@ export default {
     handleBlur() {
       this.pureValue = this.internalValue
       this.internalValue = this.format(this.internalValue)
+      /**
+       * blur event callback
+       *
+       * @type {function}
+       */
+      this.$emit('blur')
     },
     handleChange() {
       if (this.internalValue === '' || this.checkIfError(this.internalValue)) {
@@ -142,6 +148,12 @@ export default {
     },
     handleFocus() {
       this.internalValue = this.pureValue
+      /**
+       * focus event callback
+       *
+       * @type {function}
+       */
+      this.$emit('focus')
     },
     handleInput() {
       /**
