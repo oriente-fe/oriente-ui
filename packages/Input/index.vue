@@ -179,20 +179,14 @@ export default {
   width: 100%;
 }
 
-.large {
+.large > input {
+  font-size: $fs-16;
   height: 48px;
-
-  > input {
-    font-size: $fs-16;
-  }
 }
 
-.medium {
+.medium > input {
+  font-size: $fs-14;
   height: 36px;
-
-  > input {
-    font-size: $fs-14;
-  }
 }
 
 .label {
@@ -211,6 +205,7 @@ export default {
 .input-self {
   width: 100%;
   border: 0;
+  padding: 0;
   background: transparent;
   outline: none;
   box-shadow: none;
@@ -255,7 +250,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   background: $black-09;
-  padding: $spacing-1;
+  padding: 0 $spacing-1;
   border: 1px solid #eee;
   border-radius: 5px;
 
