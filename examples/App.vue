@@ -147,14 +147,29 @@ plugins: [
       </Header>
       <h2>Input</h2>
       <Input
+        v-if="isInputNumberVisible"
         type="number"
         label="Number"
-        placeholder="[0-100]"
-        :rules="[isNumber, lte0, ste100]"
+        placeholder="[0-10000]"
+        size="large"
+        :value="inputValue"
+        :rules="[isNumber, lte0, ste10000]"
+        :format="inputFormat"
+        @blur="handleBlur"
         @change="v => console.log(v)"
       />
+      <Input
+        v-else
+        type="text"
+        label="Number"
+        placeholder="[0-10000]"
+        size="large"
+        :value="inputValue"
+        :format="inputFormat"
+        @focus="handleFocus"
+      />
       <br />
-      <Input styleType="box" placeholder="Search something...">
+      <Input size="medium" styleType="box" placeholder="Search something...">
         <div slot="prependIcon">
           <i class="fas fa-search"></i>
         </div>
@@ -300,7 +315,9 @@ export default {
       isSlideUpDialogShown: false,
       isSlideUpViewShown: false,
       isToastShown: false,
-      history: new Set(['Airpods', 'iPhone', 'Macbook Pro'])
+      history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
+      isInputNumberVisible: false,
+      inputValue: '1234'
     }
   },
   methods: {
@@ -357,9 +374,9 @@ export default {
         return 'input must larger than or equal to 0'
       }
     },
-    ste100(n) {
-      if (n > 100) {
-        return 'input must smaller than or equal to 100'
+    ste10000(n) {
+      if (n > 10000) {
+        return 'input must smaller than or equal to 10000'
       }
     },
     openSearchNav() {
@@ -383,6 +400,15 @@ export default {
       this.history.clear()
       this.$forceUpdate()
       console.log('delete history')
+    },
+    handleBlur() {
+      this.isInputNumberVisible = false
+    },
+    handleFocus() {
+      this.isInputNumberVisible = true
+    },
+    inputFormat(v) {
+      return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
   }
 }

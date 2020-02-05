@@ -121,13 +121,18 @@ export default {
   watch: {
     value(val) {
       this.pureValue = val
-      this.internalValue = this.format(val)
     }
   },
   methods: {
     handleBlur() {
       this.pureValue = this.internalValue
       this.internalValue = this.format(this.internalValue)
+      /**
+       * blur event callback
+       *
+       * @type {function}
+       */
+      this.$emit('blur')
     },
     handleChange() {
       if (this.internalValue === '' || this.checkIfError(this.internalValue)) {
@@ -143,6 +148,12 @@ export default {
     },
     handleFocus() {
       this.internalValue = this.pureValue
+      /**
+       * focus event callback
+       *
+       * @type {function}
+       */
+      this.$emit('focus')
     },
     handleInput() {
       /**
@@ -179,20 +190,14 @@ export default {
   width: 100%;
 }
 
-.large {
+.large > input {
+  font-size: $fs-16;
   height: 48px;
-
-  > input {
-    font-size: $fs-16;
-  }
 }
 
-.medium {
+.medium > input {
+  font-size: $fs-14;
   height: 36px;
-
-  > input {
-    font-size: $fs-14;
-  }
 }
 
 .label {
@@ -211,6 +216,7 @@ export default {
 .input-self {
   width: 100%;
   border: 0;
+  padding: 0;
   background: transparent;
   outline: none;
   box-shadow: none;
@@ -255,7 +261,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   background: $black-09;
-  padding: $spacing-1;
+  padding: 0 $spacing-1;
   border: 1px solid #eee;
   border-radius: 5px;
 
@@ -334,23 +340,48 @@ With formation and validation
 ```jsx
 <template>
   <Input
+    v-if="isFocus"
+    type="number"
+    label="Number"
+    placeholder="[0-10000]"
+    size="large"
+    styleType="box"
+    :value="value"
+    :rules="[isNumber, lte0, ste10000]"
+    :format="format"
+    @blur="handleBlur"
+    @change="log"
+    />
+  <Input
+    v-else
     type="text"
     label="Number"
     placeholder="[0-10000]"
     size="large"
     styleType="box"
-    value="9876"
-    :rules="[isNumber, lte0, ste10000]"
+    :value="value"
     :format="format"
-    @change="log"
+    @focus="handleFocus"
   />
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isFocus: false,
+      value: '9876'
+    }
+  },
   methods: {
     log(value) {
       console.log(value)
+    },
+    handleBlur() {
+      this.isFocus = false
+    },
+    handleFocus() {
+      this.isFocus = true
     },
     isNumber(n) {
       if (isNaN(n)) {
