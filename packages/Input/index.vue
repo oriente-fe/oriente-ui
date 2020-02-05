@@ -121,6 +121,7 @@ export default {
   watch: {
     value(val) {
       this.pureValue = val
+      this.internalValue = this.format(val)
     }
   },
   methods: {
