@@ -340,23 +340,48 @@ With formation and validation
 ```jsx
 <template>
   <Input
+    v-if="isFocus"
+    type="number"
+    label="Number"
+    placeholder="[0-10000]"
+    size="large"
+    styleType="box"
+    :value="value"
+    :rules="[isNumber, lte0, ste10000]"
+    :format="format"
+    @blur="handleBlur"
+    @change="log"
+    />
+  <Input
+    v-else
     type="text"
     label="Number"
     placeholder="[0-10000]"
     size="large"
     styleType="box"
-    value="9876"
-    :rules="[isNumber, lte0, ste10000]"
+    :value="value"
     :format="format"
-    @change="log"
+    @focus="handleFocus"
   />
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isFocus: false,
+      value: '9876'
+    }
+  },
   methods: {
     log(value) {
       console.log(value)
+    },
+    handleBlur() {
+      this.isFocus = false
+    },
+    handleFocus() {
+      this.isFocus = true
     },
     isNumber(n) {
       if (isNaN(n)) {
