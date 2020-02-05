@@ -147,8 +147,7 @@ plugins: [
       </Header>
       <h2>Input</h2>
       <Input
-        v-if="isInputNumberVisible"
-        type="number"
+        :type="inputType"
         label="Number"
         placeholder="[0-10000]"
         size="large"
@@ -156,17 +155,8 @@ plugins: [
         :rules="[isNumber, lte0, ste10000]"
         :format="inputFormat"
         @blur="handleBlur"
-        @change="v => console.log(v)"
-      />
-      <Input
-        v-else
-        type="text"
-        label="Number"
-        placeholder="[0-10000]"
-        size="large"
-        :value="inputValue"
-        :format="inputFormat"
         @focus="handleFocus"
+        @change="v => console.log(v)"
       />
       <br />
       <Input size="medium" styleType="box" placeholder="Search something...">
@@ -316,7 +306,7 @@ export default {
       isSlideUpViewShown: false,
       isToastShown: false,
       history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
-      isInputNumberVisible: false,
+      inputType: 'text',
       inputValue: '1234'
     }
   },
@@ -402,10 +392,10 @@ export default {
       console.log('delete history')
     },
     handleBlur() {
-      this.isInputNumberVisible = false
+      this.inputType = 'text'
     },
     handleFocus() {
-      this.isInputNumberVisible = true
+      this.inputType = 'number'
     },
     inputFormat(v) {
       return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
