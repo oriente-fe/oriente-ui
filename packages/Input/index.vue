@@ -266,10 +266,6 @@ export default {
   padding: 0;
   border-radius: 6px;
 
-  &:focus-within {
-    background: $input-box-focus;
-  }
-
   &.error {
     border-color: $danger;
   }
