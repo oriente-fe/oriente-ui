@@ -54,27 +54,29 @@
           </Input>
         </form>
       </div>
-      <div v-if="history.length > 0" :class="$style['section']">
-        <div :class="$style['header']">
-          <div :class="$style['title']">
-            {{ historyLabel }}
+      <div :class="$style['content']">
+        <div v-if="history.length > 0" :class="$style['section']">
+          <div :class="$style['header']">
+            <div :class="$style['title']">
+              {{ historyLabel }}
+            </div>
+            <div :class="$style['delete']">
+              <Button style-type="default" @click="clickDelete">
+                <div
+                  :class="$style['small-icon']"
+                  v-html="require('~/assets/ic_delete.svg')"
+                />
+              </Button>
+            </div>
           </div>
-          <div :class="$style['delete']">
-            <Button style-type="default" @click="clickDelete">
-              <div
-                :class="$style['small-icon']"
-                v-html="require('~/assets/ic_delete.svg')"
-              />
-            </Button>
-          </div>
-        </div>
-        <div :class="$style['row']">
-          <div v-for="(label, i) in history" :key="`label${i}`">
-            <Button style-type="default" @click="() => clickLabel(label)">
-              <span :class="$style['label']">
-                {{ label }}
-              </span>
-            </Button>
+          <div :class="$style['row']">
+            <div v-for="(label, i) in history" :key="`label${i}`">
+              <Button style-type="default" @click="() => clickLabel(label)" :class="$style['label']">
+                <span>
+                  {{ label }}
+                </span>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -275,8 +277,12 @@ export default {
   }
 }
 
+.content {
+  padding: $spacing-3 $spacing-2 0;
+}
+
 .section {
-  margin: $spacing-3 $spacing-2 0 $spacing-2;
+  position: relative;
 }
 
 .header {
@@ -288,10 +294,16 @@ export default {
   color: $black-50;
   font-size: $fs-14;
   font-weight: $fw-bold;
+  padding: 0 0 $spacing-1 0;
 }
 
 .delete {
-  width: 36px;
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  button {
+    width: 48px;
+  }
 }
 
 .row {
@@ -300,16 +312,21 @@ export default {
 }
 
 .label {
-  display: inline-block;
-  font-size: $fs-14;
-  line-height: 2.14;
-  color: $font-color;
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 2px;
-  margin: 0 $spacing-1 0 0;
-  padding: 0 10px;
-  user-select: none;
-  white-space: nowrap;
+  height: auto;
+  padding: 6px 0;
+
+  span {
+    display: inline-block;
+    font-size: $fs-14;
+    line-height: 2.14;
+    color: $font-color;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    margin: 0 $spacing-1 0 0;
+    padding: 0 10px;
+    user-select: none;
+    white-space: nowrap;
+  }
 }
 </style>
 

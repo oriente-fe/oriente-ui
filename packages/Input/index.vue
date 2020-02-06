@@ -203,6 +203,7 @@ export default {
 
 .label {
   width: 100%;
+  color: $black-50;
   font-size: $fs-14;
   padding: 10px 0;
 }
