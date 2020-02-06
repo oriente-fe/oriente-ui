@@ -237,19 +237,24 @@ export default {
 .form {
   width: 100%;
   margin: 0 10px 0 0;
+
+  input {
+    width: auto;
+    flex: 1;
+  }
 }
 
 .back {
-  width: 60px;
-
   button {
-    color: $black-50;
+    height: 56px;
+    padding: 0 $spacing-2;
   }
 }
 
 .clean {
+  width: 100%;
+
   button {
-    color: $black-50;
     background: transparent;
   }
 }
