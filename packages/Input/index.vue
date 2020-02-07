@@ -205,6 +205,7 @@ export default {
   width: 100%;
   color: $black-50;
   font-size: $fs-14;
+  padding: 10px 0;
 }
 
 .input {
@@ -261,14 +262,9 @@ export default {
 .box-bg {
   width: 100%;
   box-sizing: border-box;
-  background: $black-09;
-  padding: 0 $spacing-1;
-  border: 1px solid #eee;
-  border-radius: 5px;
-
-  &:focus-within {
-    background: #eee;
-  }
+  background: $input-box;
+  padding: 0;
+  border-radius: 6px;
 
   &.error {
     border-color: $danger;
@@ -284,13 +280,9 @@ export default {
 .icon {
   @extend %flex-center;
 
-  width: 25px;
-  height: 25px;
+  width: 36px;
+  height: 36px;
   user-select: none;
-}
-
-.prepend {
-  margin: 0 5px 0 0;
 }
 </style>
 
