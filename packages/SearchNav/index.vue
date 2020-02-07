@@ -71,7 +71,11 @@
           </div>
           <div :class="$style['row']">
             <div v-for="(label, i) in history" :key="`label${i}`">
-              <Button style-type="default" @click="() => clickLabel(label)" :class="$style['label']">
+              <Button
+                style-type="default"
+                @click="() => clickLabel(label)"
+                :class="$style['label']"
+              >
                 <span>
                   {{ label }}
                 </span>

@@ -54,7 +54,7 @@ export default {
   position: fixed;
   right: 6px;
   bottom: $spacing-2;
-  box-shadow: 0 2px 1.25rem rgba(0,0,0,0.15);
+  box-shadow: 0 2px 1.25rem rgba(0, 0, 0, 0.15);
   z-index: 2;
   transition: 0.3s;
   opacity: 0;
