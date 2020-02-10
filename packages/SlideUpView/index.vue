@@ -1,30 +1,27 @@
 <template>
-  <div>
-    <div v-if="value" :class="$style.modal"></div>
-    <div ref="main" :class="[$style.container, { show: value }]">
-      <!-- @slot modal header -->
-      <slot name="header">
-        <Header>
-          <template slot="left">
-            <span
-              :class="$style.close"
-              @click="close"
-              v-html="require('~/assets/ic_close.svg')"
-            />
-          </template>
-          <div v-if="title" :class="$style.title">{{ title }}</div>
-          <div slot="right"></div>
-        </Header>
-      </slot>
+  <div ref="main" :class="[$style.container, { [$style['hidden']]: !value }]">
+    <!-- @slot modal header -->
+    <slot name="header">
+      <Header>
+        <template slot="left">
+          <span
+            :class="$style.close"
+            @click="close"
+            v-html="require('~/assets/ic_close.svg')"
+          />
+        </template>
+        <div v-if="title" :class="$style.title">{{ title }}</div>
+        <div slot="right"></div>
+      </Header>
+    </slot>
 
-      <div :class="$style.content">
-        <!-- @slot modal content -->
-        <slot />
-      </div>
-
-      <!-- @slot modal footer -->
-      <slot name="footer"></slot>
+    <div :class="$style.content">
+      <!-- @slot modal content -->
+      <slot />
     </div>
+
+    <!-- @slot modal footer -->
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -83,7 +80,7 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .modal {
@@ -99,10 +96,11 @@ export default {
   @extend %card;
   border-radius: 0;
 
-  transform: translateY(100%);
+  transform: translateY(0%);
   transition: 0.3s;
-  &:global(.show) {
-    transform: translateY(0%);
+
+  &.hidden {
+    transform: translateY(100%);
   }
 }
 

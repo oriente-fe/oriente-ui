@@ -156,21 +156,21 @@ Usage
       style-type="default"
       @click="openDialog"
       :style="{border: '1px solid #333'}"
-      >
+    >
       Open Dialog
     </Button>
-      <Dialog
-        :value="isDialogShown"
-        @input="closeDialog"
-        >
-        <div slot="header">
-          Header
-        </div>
-        Content
-        <div slot="footer">
-          Footer
-        </div>
-      </Dialog>
+    <Dialog
+      :value="isDialogShown"
+      @input="closeDialog"
+    >
+      <div slot="header">
+        Header
+      </div>
+      Content
+      <div slot="footer">
+        Footer
+      </div>
+    </Dialog>
   </div>
 </template>
 

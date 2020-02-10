@@ -31,6 +31,7 @@
   "dependencies": {
     "body-scroll-lock": "^2.6.4",
     "highlight.js": "^9.15.10",
+    "portal-vue": "^2.1.7",
     "vue": "^2.5.17"
   },
   "devDependencies": {
