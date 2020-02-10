@@ -16,87 +16,84 @@
         </div>
       </Input>
     </div>
-    <portal to="search-nav">
-      <div :class="[$style['container'], { [$style['hidden']]: !isShown }]">
-        <div ref="nav" :class="$style['nav']">
-          <div :class="$style['back']">
-            <Button style-type="default" @click="clickBack">
+    <div
+      v-if="isExist"
+      :class="[$style['container'], { [$style['hide']]: !isShown }]"
+    >
+      <div ref="nav" :class="$style['nav']">
+        <div :class="$style['back']">
+          <Button style-type="default" @click="clickBack">
+            <div
+              :class="$style['icon']"
+              v-html="require('~/assets/ic_chevron_left.svg')"
+            />
+          </Button>
+        </div>
+        <form @submit.prevent="() => submit(search)" :class="$style['form']">
+          <Input
+            size="medium"
+            styleType="box"
+            :placeholder="placeholder"
+            :value="search"
+            @keyup="emitChange"
+          >
+            <div slot="prependIcon">
               <div
                 :class="$style['icon']"
-                v-html="require('~/assets/ic_chevron_left.svg')"
+                v-html="require('~/assets/ic_search.svg')"
               />
-            </Button>
-          </div>
-          <form @submit.prevent="() => submit(search)" :class="$style['form']">
-            <Input
-              size="medium"
-              styleType="box"
-              :placeholder="placeholder"
-              :value="search"
-              @keyup="emitChange"
-            >
-              <div slot="prependIcon">
+            </div>
+            <div v-if="search" slot="appendIcon" :class="$style['clean']">
+              <Button style-type="default" @click="clickClean">
                 <div
-                  :class="$style['icon']"
-                  v-html="require('~/assets/ic_search.svg')"
+                  :class="$style['small-icon']"
+                  v-html="require('~/assets/ic_clean.svg')"
                 />
-              </div>
-              <div v-if="search" slot="appendIcon" :class="$style['clean']">
-                <Button style-type="default" @click="clickClean">
-                  <div
-                    :class="$style['small-icon']"
-                    v-html="require('~/assets/ic_clean.svg')"
-                  />
-                </Button>
-              </div>
-            </Input>
-          </form>
-        </div>
-        <div :class="$style['content']">
-          <div v-if="history.length > 0" :class="$style['section']">
-            <div :class="$style['header']">
-              <div :class="$style['title']">
-                {{ historyLabel }}
-              </div>
-              <div :class="$style['delete']">
-                <Button style-type="default" @click="clickDelete">
-                  <div
-                    :class="$style['small-icon']"
-                    v-html="require('~/assets/ic_delete.svg')"
-                  />
-                </Button>
-              </div>
+              </Button>
             </div>
-            <div :class="$style['row']">
-              <div v-for="(label, i) in history" :key="`label${i}`">
-                <Button
-                  style-type="default"
-                  @click="() => clickLabel(label)"
-                  :class="$style['label']"
-                >
-                  <span>
-                    {{ label }}
-                  </span>
-                </Button>
-              </div>
+          </Input>
+        </form>
+      </div>
+      <div :class="$style['content']">
+        <div v-if="history.length > 0" :class="$style['section']">
+          <div :class="$style['header']">
+            <div :class="$style['title']">
+              {{ historyLabel }}
+            </div>
+            <div :class="$style['delete']">
+              <Button style-type="default" @click="clickDelete">
+                <div
+                  :class="$style['small-icon']"
+                  v-html="require('~/assets/ic_delete.svg')"
+                />
+              </Button>
+            </div>
+          </div>
+          <div :class="$style['row']">
+            <div v-for="(label, i) in history" :key="`label${i}`">
+              <Button
+                style-type="default"
+                @click="() => clickLabel(label)"
+                :class="$style['label']"
+              >
+                <span>
+                  {{ label }}
+                </span>
+              </Button>
             </div>
           </div>
         </div>
-        <!-- @slot append section -->
-        <slot name="appendSection" />
       </div>
-    </portal>
+      <!-- @slot append section -->
+      <slot name="appendSection" />
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import PortalVue from 'portal-vue'
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 import _ from 'lodash'
 import Input from '@/Input'
-
-Vue.use(PortalVue)
 
 export default {
   name: 'SearchNav',
@@ -166,12 +163,6 @@ export default {
       this.$emit('submit', text || this.search)
     },
     clickFake() {
-      if (typeof this.$refs.nav === 'undefined') {
-        throw new Error(
-          'You should add <portal-target name="search-nav" /> for SearchNav.'
-        )
-      }
-
       this.isExist = true
       /**
        * click fake input callback
@@ -233,11 +224,11 @@ export default {
   z-index: 1000;
   opacity: 1;
   transition: all 0.3s ease-out;
+}
 
-  &.hidden {
-    z-index: -1000;
-    opacity: 0;
-  }
+.hide {
+  z-index: -1000;
+  opacity: 0;
 }
 
 .nav {
@@ -348,31 +339,24 @@ Usage
 
 ```jsx
 <template>
-  <div>
-    <SearchNav
-      value="default value"
-      placeholder="Type anything..."
-      :history="Array.from(history).reverse()"
-      @open="open"
-      @back="back"
-      @change="change"
-      @submit="submit"
-      @cleanSearch="cleanSearch"
-      @deleteHistory="deleteHistory"
-    >
-      <div slot="appendSection">
-        👌
-      </div>
-    </SearchNav>
-    <portal-target name="search-nav" />
-  </div>
+  <SearchNav
+    value="default value"
+    placeholder="Type anything..."
+    :history="Array.from(history).reverse()"
+    @open="open"
+    @back="back"
+    @change="change"
+    @submit="submit"
+    @cleanSearch="cleanSearch"
+    @deleteHistory="deleteHistory"
+  >
+    <div slot="appendSection">
+      👌
+    </div>
+  </SearchNav>
 </template>
 
 <script>
-import Vue from 'vue'
-import PortalVue from 'portal-vue'
-Vue.use(PortalVue)
-
 export default {
   data() {
     return {

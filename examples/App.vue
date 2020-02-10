@@ -289,15 +289,10 @@ plugins: [
     <Toast :value="isToastShown" @input="closeToast">
       This is a toast.
     </Toast>
-    <portal-target name="search-nav" />
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import PortalVue from 'portal-vue'
-Vue.use(PortalVue)
-
 export default {
   data() {
     return {
