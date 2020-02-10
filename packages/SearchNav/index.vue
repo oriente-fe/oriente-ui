@@ -364,6 +364,7 @@ Usage
         👌
       </div>
     </SearchNav>
+    <portal-target name="search-nav" />
   </div>
 </template>
 
