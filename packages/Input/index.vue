@@ -263,7 +263,7 @@ export default {
   width: 100%;
   box-sizing: border-box;
   background: $input-box;
-  padding: 0;
+  padding: 0 $spacing-2;
   border-radius: 6px;
 
   &.error {
@@ -283,6 +283,14 @@ export default {
   width: 36px;
   height: 36px;
   user-select: none;
+
+  &:first-child {
+    margin: 0 0 0 -16px;
+  }
+
+  &:last-child {
+    margin: 0 -16px 0 0;
+  }
 }
 </style>
 
