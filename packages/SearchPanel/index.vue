@@ -132,7 +132,6 @@ export default {
     },
     submit(text) {
       this.emitChange(text)
-      this.clickBack()
       /**
        * submit event
        */
