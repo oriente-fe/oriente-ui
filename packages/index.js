@@ -9,7 +9,7 @@ import Header from './Header'
 import Input from './Input'
 import Loading from './Loading'
 import Modal from './Modal'
-import SearchNav from './SearchNav'
+import SearchPanel from './SearchPanel'
 import SlideUpDialog from './SlideUpDialog'
 import SlideUpView from './SlideUpView'
 import StandarizedContainer from './StandarizedContainer'
@@ -29,7 +29,7 @@ const components = [
   Input,
   Loading,
   Modal,
-  SearchNav,
+  SearchPanel,
   SlideUpDialog,
   SlideUpView,
   StandarizedContainer,

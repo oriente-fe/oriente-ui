@@ -1,92 +1,71 @@
 <template>
-  <div>
-    <div :class="$style['fake']" @click="clickFake">
-      <div :class="$style['mask']"></div>
-      <Input
-        size="medium"
-        styleType="box"
-        :placeholder="placeholder"
-        :value="search"
-      >
-        <div slot="prependIcon">
+  <div :class="[$style['container'], { [$style['hide']]: !isShown }]">
+    <div ref="nav" :class="$style['nav']">
+      <div :class="$style['back']">
+        <Button style-type="default" @click="clickBack">
           <div
             :class="$style['icon']"
-            v-html="require('~/assets/ic_search.svg')"
+            v-html="require('~/assets/ic_chevron_left.svg')"
           />
-        </div>
-      </Input>
-    </div>
-    <div
-      v-if="isExist"
-      :class="[$style['container'], { [$style['hide']]: !isShown }]"
-    >
-      <div ref="nav" :class="$style['nav']">
-        <div :class="$style['back']">
-          <Button style-type="default" @click="clickBack">
+        </Button>
+      </div>
+      <form @submit.prevent="() => submit(search)" :class="$style['form']">
+        <Input
+          size="medium"
+          styleType="box"
+          :placeholder="placeholder"
+          :value="search"
+          @keyup="emitChange"
+        >
+          <div slot="prependIcon">
             <div
               :class="$style['icon']"
-              v-html="require('~/assets/ic_chevron_left.svg')"
+              v-html="require('~/assets/ic_search.svg')"
             />
-          </Button>
-        </div>
-        <form @submit.prevent="() => submit(search)" :class="$style['form']">
-          <Input
-            size="medium"
-            styleType="box"
-            :placeholder="placeholder"
-            :value="search"
-            @keyup="emitChange"
-          >
-            <div slot="prependIcon">
+          </div>
+          <div v-if="search" slot="appendIcon" :class="$style['clean']">
+            <Button style-type="default" @click="clickClean">
               <div
-                :class="$style['icon']"
-                v-html="require('~/assets/ic_search.svg')"
+                :class="$style['small-icon']"
+                v-html="require('~/assets/ic_clean.svg')"
               />
-            </div>
-            <div v-if="search" slot="appendIcon" :class="$style['clean']">
-              <Button style-type="default" @click="clickClean">
-                <div
-                  :class="$style['small-icon']"
-                  v-html="require('~/assets/ic_clean.svg')"
-                />
-              </Button>
-            </div>
-          </Input>
-        </form>
-      </div>
-      <div :class="$style['content']">
-        <div v-if="history.length > 0" :class="$style['section']">
-          <div :class="$style['header']">
-            <div :class="$style['title']">
-              {{ historyLabel }}
-            </div>
-            <div :class="$style['delete']">
-              <Button style-type="default" @click="clickDelete">
-                <div
-                  :class="$style['small-icon']"
-                  v-html="require('~/assets/ic_delete.svg')"
-                />
-              </Button>
-            </div>
+            </Button>
           </div>
-          <div :class="$style['row']">
-            <div v-for="(label, i) in history" :key="`label${i}`">
-              <Button
-                style-type="default"
-                @click="() => clickLabel(label)"
-                :class="$style['label']"
-              >
-                <span>
-                  {{ label }}
-                </span>
-              </Button>
-            </div>
+        </Input>
+      </form>
+    </div>
+    <div :class="$style['content']">
+      <div v-if="history.length > 0" :class="$style['section']">
+        <div :class="$style['header']">
+          <div :class="$style['title']">
+            {{ historyLabel }}
+          </div>
+          <div :class="$style['delete']">
+            <Button style-type="default" @click="clickDelete">
+              <div
+                :class="$style['small-icon']"
+                v-html="require('~/assets/ic_delete.svg')"
+              />
+            </Button>
+          </div>
+        </div>
+        <div :class="$style['row']">
+          <div v-for="(label, i) in history" :key="`label${i}`">
+            <Button
+              style-type="default"
+              @click="() => clickLabel(label)"
+              :class="$style['label']"
+            >
+              <span>
+                {{ label }}
+              </span>
+            </Button>
           </div>
         </div>
       </div>
-      <!-- @slot append section -->
-      <slot name="appendSection" />
     </div>
+    <!-- @slot append section -->
+    <slot name="appendSection" />
   </div>
 </template>
 
@@ -96,11 +75,15 @@ import _ from 'lodash'
 import Input from '@/Input'
 
 export default {
-  name: 'SearchNav',
+  name: 'SearchPanel',
   components: {
     Input
   },
   props: {
+    isShown: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: String,
       default: ''
@@ -120,26 +103,19 @@ export default {
   },
   data() {
     return {
-      search: this.value,
-      isExist: false,
-      isShown: false
+      search: this.value
     }
   },
   watch: {
-    isExist(val) {
+    isShown(val) {
       if (val) {
         this.$nextTick(() => {
-          this.isShown = true
           this.$refs.nav.querySelector('input').focus()
           disableBodyScroll(this.$refs.nav.parentNode)
         })
-      }
-    },
-    isShown(val) {
-      if (!val) {
+      } else {
         this.$refs.nav.querySelector('input').blur()
         enableBodyScroll(this.$refs.nav.parentNode)
-        setTimeout(() => (this.isExist = false), 300)
       }
     },
     value(val) {
@@ -162,15 +138,7 @@ export default {
        */
       this.$emit('submit', text || this.search)
     },
-    clickFake() {
-      this.isExist = true
-      /**
-       * click fake input callback
-       */
-      this.$emit('open')
-    },
     clickBack() {
-      this.isShown = false
       /**
        * click back callback
        */
@@ -339,38 +307,55 @@ Usage
 
 ```jsx
 <template>
-  <SearchNav
-    value="default value"
-    placeholder="Type anything..."
-    :history="Array.from(history).reverse()"
-    @open="open"
-    @back="back"
-    @change="change"
-    @submit="submit"
-    @cleanSearch="cleanSearch"
-    @deleteHistory="deleteHistory"
-  >
-    <div slot="appendSection">
-      👌
-    </div>
-  </SearchNav>
+  <div>
+    <Input
+      size="medium"
+      styleType="box"
+      :placeholder="placeholder"
+      :value="value"
+      @focus="open"
+    >
+      <div slot="prependIcon">
+        <i class="fas fa-search"></i>
+      </div>
+    </Input>
+    <SearchPanel
+      :isShown="isShown"
+      :value="value"
+      :placeholder="placeholder"
+      :history="Array.from(history).reverse()"
+      @back="back"
+      @change="change"
+      @submit="submit"
+      @cleanSearch="cleanSearch"
+      @deleteHistory="deleteHistory"
+    >
+      <div slot="appendSection">
+        👌
+      </div>
+    </SearchPanel>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      history: new Set(['Airpods', 'iPhone', 'Macbook Pro'])
+      isShown: false,
+      history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
+      value: 'default value',
+      placeholder: 'Type anything...'
     }
   },
   methods: {
     open() {
-      console.log('click open')
+      this.isShown = true
     },
     back() {
-      console.log('click back')
+      this.isShown = false
     },
     change(text) {
+      this.value = text
       console.log('change', text)
     },
     submit(text) {
@@ -382,6 +367,7 @@ export default {
       console.log('clean search')
     },
     deleteHistory() {
+      this.value = ''
       this.history.clear()
       this.$forceUpdate()
       console.log('delete history')
