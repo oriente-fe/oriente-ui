@@ -191,22 +191,35 @@ plugins: [
           Content
         </Modal>
       </div>
-      <h2>SearchNav</h2>
-      <SearchNav
-        value="default value"
-        placeholder="Type anything..."
-        :history="Array.from(history).reverse()"
-        @open="openSearchNav"
-        @back="searchNavClickback"
-        @change="searchNavOnChange"
-        @submit="searchNavOnSubmit"
-        @cleanSearch="searchNavCleanSearch"
-        @deleteHistory="searchNavDeleteHistory"
-      >
-        <div slot="appendSection">
-          👌
-        </div>
-      </SearchNav>
+      <h2>SearhPanel</h2>
+      <div>
+        <Input
+          size="medium"
+          styleType="box"
+          :placeholder="searchPanelPlaceholder"
+          :value="searchPanelValue"
+          @focus="openSearchPanel"
+        >
+          <div slot="prependIcon">
+            <i class="fas fa-search"></i>
+          </div>
+        </Input>
+        <SearchPanel
+          :isShown="isSearchPanelShown"
+          :value="searchPanelValue"
+          :placeholder="searchPanelPlaceholder"
+          :history="Array.from(history).reverse()"
+          @back="searchPanelClickback"
+          @change="searchPanelOnChange"
+          @submit="searchPanelOnSubmit"
+          @cleanSearch="searchPanelCleanSearch"
+          @deleteHistory="searchPanelDeleteHistory"
+        >
+          <div slot="appendSection">
+            👌
+          </div>
+        </SearchPanel>
+      </div>
       <h2>SlideUpDialog</h2>
       <div>
         <Button
@@ -305,6 +318,9 @@ export default {
       isSlideUpDialogShown: false,
       isSlideUpViewShown: false,
       isToastShown: false,
+      isSearchPanelShown: false,
+      searchPanelValue: 'default value',
+      searchPanelPlaceholder: 'Type anything...',
       history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
       inputType: 'text',
       inputValue: '1234'
@@ -369,24 +385,26 @@ export default {
         return 'input must smaller than or equal to 10000'
       }
     },
-    openSearchNav() {
-      console.log('click open')
+    openSearchPanel() {
+      this.isSearchPanelShown = true
     },
-    searchNavClickback() {
-      console.log('click back')
+    searchPanelClickback() {
+      this.isSearchPanelShown = false
     },
-    searchNavOnChange(text) {
+    searchPanelOnChange(text) {
+      this.searchPanelValue = text
       console.log('change', text)
     },
-    searchNavOnSubmit(text) {
+    searchPanelOnSubmit(text) {
       this.history.add(text)
       this.$forceUpdate()
       console.log('submit', text)
     },
-    searchNavCleanSearch() {
+    searchPanelCleanSearch() {
       console.log('clean search')
     },
-    searchNavDeleteHistory() {
+    searchPanelDeleteHistory() {
+      this.searchPanelValue = ''
       this.history.clear()
       this.$forceUpdate()
       console.log('delete history')
