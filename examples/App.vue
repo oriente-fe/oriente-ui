@@ -111,6 +111,9 @@ plugins: [
         </Dialog>
       </div>
       <h2>BackToTopButton</h2>
+      <div>
+        fixed at the right bottom corner
+      </div>
       <BackToTopButton :targetEl="backToTopTarget" />
       <h2>FixedButton</h2>
       <div>

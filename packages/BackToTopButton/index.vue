@@ -28,8 +28,14 @@ export default {
     }
   },
   watch: {
-    targetEl(el) {
-      el.addEventListener('scroll', this.handleScroll)
+    targetEl(el, prevEl) {
+      if (prevEl) {
+        prevEl.removeEventListener('scroll', this.handleScroll)
+      }
+
+      if (el) {
+        el.addEventListener('scroll', this.handleScroll)
+      }
     }
   },
   mounted() {
@@ -38,7 +44,9 @@ export default {
     }
   },
   destroyed() {
-    this.targetEl.removeEventListener('scroll', this.handleScroll)
+    if (this.targetEl) {
+      this.targetEl.removeEventListener('scroll', this.handleScroll)
+    }
   },
   methods: {
     handleScroll() {
