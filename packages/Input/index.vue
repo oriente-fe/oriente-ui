@@ -253,6 +253,7 @@ export default {
 .box {
   color: $font-color;
   font-size: $fs-16;
+  flex: 1;
 
   &::placeholder {
     color: $black-30;

@@ -49,7 +49,7 @@ export default {
 @import '~/styles/_variables.scss';
 
 .header {
-  @extend %flex-center;
+  @extend %flex-space-between;
 
   width: 100%;
   height: $header-height;
@@ -66,6 +66,7 @@ export default {
 .left {
   @extend %flex-center;
   justify-content: flex-start;
+  flex: 0 $header-height;
 }
 
 .middle {
@@ -79,6 +80,7 @@ export default {
 .right {
   @extend %flex-center;
   justify-content: flex-end;
+  flex: 0 $header-height;
 }
 </style>
 
