@@ -111,17 +111,7 @@ plugins: [
         </Dialog>
       </div>
       <h2>BackToTopButton</h2>
-      <div>
-        <Button
-          style-type="default"
-          @click="isBackToTopButtonShown = !isBackToTopButtonShown"
-          :style="{ border: '1px solid #333' }"
-        >
-          Toggle Back to Top Button
-        </Button>
-        <BackToTopButton v-if="isBackToTopButtonShown" />
-      </div>
-
+      <BackToTopButton :targetEl="backToTopTarget" />
       <h2>FixedButton</h2>
       <div>
         <Button
@@ -311,7 +301,6 @@ export default {
     return {
       isDialogShown: false,
       isConfirmDialogShown: false,
-      isBackToTopButtonShown: true,
       isFixedButtonShown: false,
       isLoading: false,
       isModalShown: false,
@@ -323,7 +312,8 @@ export default {
       searchPanelPlaceholder: 'Type anything...',
       history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
       inputType: 'text',
-      inputValue: '1234'
+      inputValue: '1234',
+      backToTopTarget: window
     }
   },
   methods: {

@@ -16,25 +16,45 @@
 <script>
 export default {
   name: 'BackToTopButton',
+  props: {
+    targetEl: {
+      type: [Element, Window],
+      default: null
+    }
+  },
   data() {
     return {
       isShown: false
     }
   },
-  created() {
-    this.handleScroll()
-    window.addEventListener('scroll', this.handleScroll)
+  watch: {
+    targetEl(el) {
+      el.addEventListener('scroll', this.handleScroll)
+    }
+  },
+  mounted() {
+    if (this.targetEl) {
+      this.targetEl.addEventListener('scroll', this.handleScroll)
+    }
   },
   destroyed() {
-    window.removeEventListener('scroll', this.handleScroll)
+    this.targetEl.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     handleScroll() {
-      const { innerHeight, pageYOffset } = window
-      this.isShown = pageYOffset > innerHeight
+      const {
+        innerHeight,
+        pageYOffset,
+        offsetHeight,
+        scrollTop
+      } = this.targetEl
+      this.isShown =
+        this.targetEl === window
+          ? pageYOffset > innerHeight
+          : scrollTop > offsetHeight
     },
     scrollToTop() {
-      window.scrollTo({
+      this.targetEl.scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
@@ -55,7 +75,7 @@ export default {
   right: 6px;
   bottom: $spacing-2;
   box-shadow: 0 2px 1.25rem rgba(0, 0, 0, 0.15);
-  z-index: 2;
+  z-index: 99;
   transition: 0.3s;
   opacity: 0;
   pointer-events: none;
@@ -77,7 +97,38 @@ Usage
 
 ```
 <template>
-  <BackToTopButton />
+  <div>
+    <div ref="main" class="main">
+      <BackToTopButton :targetEl="el" />
+      <div class="body" />
+    </div>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      el: null
+    }
+  },
+  mounted() {
+    this.el = this.$refs.main
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.main {
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.body {
+  background: rgb(188,255,254);
+  background: linear-gradient(0deg, rgba(188,255,254,1) 0%, rgba(0,234,255,1) 100%);
+  height: 1000px;
+}
+</style>
 ```
 </docs>
