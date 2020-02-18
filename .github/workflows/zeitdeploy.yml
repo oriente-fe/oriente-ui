@@ -16,6 +16,6 @@ jobs:
       - name: Deploy to zeit
         run: |
           npm install
-          npx now --prod --token $ZEIT_TOKEN
+          npx now --prod --confirm --token $ZEIT_TOKEN
         env:
           ZEIT_TOKEN: ${{secrets.ZEIT_TOKEN}}
