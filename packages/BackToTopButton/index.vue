@@ -14,14 +14,13 @@
 </template>
 
 <script>
+/**
+ * This component should only be used on client side rendering,
+ * and targetEl prop type must be Element or Window.
+ */
 export default {
   name: 'BackToTopButton',
-  props: {
-    targetEl: {
-      type: [Element, Window],
-      default: null
-    }
-  },
+  props: ['targetEl'],
   data() {
     return {
       isShown: false
