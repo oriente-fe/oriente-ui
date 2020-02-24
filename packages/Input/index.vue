@@ -193,11 +193,13 @@ export default {
 
 .large > input {
   font-size: $fs-16;
+  line-height: 48px;
   height: 48px;
 }
 
 .medium > input {
   font-size: $fs-14;
+  line-height: 36px;
   height: 36px;
 }
 
