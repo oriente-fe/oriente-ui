@@ -11,6 +11,7 @@
       </div>
       <form @submit.prevent="() => submit(search)" :class="$style['form']">
         <Input
+          type="textarea"
           size="medium"
           styleType="box"
           :placeholder="placeholder"

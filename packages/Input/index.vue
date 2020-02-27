@@ -17,7 +17,20 @@
           <!-- @slot prepend icon -->
           <slot name="prependIcon" />
         </div>
+        <textarea
+          v-if="type === 'textarea'"
+          rows="1"
+          wrap="off"
+          :class="[$style['input-self'], $style[styleType]]"
+          :placeholder="placeholder"
+          @blur="handleBlur"
+          @change="handleChange"
+          @focus="handleFocus"
+          @input="handleInput"
+          v-model="internalValue"
+        />
         <input
+          v-else
           :type="type"
           :class="[$style['input-self'], $style[styleType]]"
           :placeholder="placeholder"
@@ -191,16 +204,32 @@ export default {
   width: 100%;
 }
 
-.large > input {
-  font-size: $fs-16;
-  line-height: 48px;
+.large {
   height: 48px;
+  > input {
+    font-size: $fs-16;
+    line-height: $fs-16;
+    height: 48px;
+  }
+  > textarea {
+    font-size: $fs-16;
+    line-height: $fs-16;
+    height: $fs-16;
+  }
 }
 
-.medium > input {
-  font-size: $fs-14;
-  line-height: 36px;
+.medium {
   height: 36px;
+  > input {
+    font-size: $fs-14;
+    line-height: $fs-14;
+    height: 36px;
+  }
+  > textarea {
+    font-size: $fs-14;
+    line-height: $fs-14;
+    height: $fs-14;
+  }
 }
 
 .label {
@@ -222,13 +251,19 @@ export default {
   border: 0;
   padding: 0;
   background: transparent;
+  resize: none;
   outline: none;
   box-shadow: none;
+  scrollbar-width: none;
+}
+
+.input-self::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 
 .regular {
   color: $font-color;
-  font-size: $fs-16;
 
   &::placeholder {
     color: $black-30;
@@ -254,7 +289,6 @@ export default {
 
 .box {
   color: $font-color;
-  font-size: $fs-16;
   flex: 1;
 
   &::placeholder {
@@ -326,6 +360,7 @@ Box
 
 ```jsx
 <Input
+  type="textarea"
   size="medium"
   styleType="box"
   placeholder="Search something..."
