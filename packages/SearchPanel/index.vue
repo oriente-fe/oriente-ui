@@ -9,7 +9,7 @@
           />
         </Button>
       </div>
-      <form @submit.prevent="() => submit(search)" :class="$style['form']">
+      <div :class="$style['form']">
         <Input
           type="textarea"
           size="medium"
@@ -17,6 +17,7 @@
           :placeholder="placeholder"
           :value="search"
           @keyup="emitChange"
+          @change="submit"
         >
           <div slot="prependIcon">
             <div
@@ -33,7 +34,7 @@
             </Button>
           </div>
         </Input>
-      </form>
+      </div>
     </div>
     <div v-if="history.length > 0" :class="$style['content']">
       <div :class="$style['section']">
@@ -111,11 +112,17 @@ export default {
     isShown(val) {
       if (val) {
         this.$nextTick(() => {
-          this.$refs.nav.querySelector('input').focus()
+          const ele =
+            this.$refs.nav.querySelector('input') ||
+            this.$refs.nav.querySelector('textarea')
+          ele.focus()
           disableBodyScroll(this.$refs.nav.parentNode)
         })
       } else {
-        this.$refs.nav.querySelector('input').blur()
+        const ele =
+          this.$refs.nav.querySelector('input') ||
+          this.$refs.nav.querySelector('textarea')
+        ele.blur()
         enableBodyScroll(this.$refs.nav.parentNode)
       }
     },
