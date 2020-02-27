@@ -18,6 +18,7 @@
           <slot name="prependIcon" />
         </div>
         <textarea
+          ref="textarea"
           v-if="type === 'textarea'"
           rows="1"
           wrap="off"
@@ -135,6 +136,17 @@ export default {
     value(val) {
       this.pureValue = val
       this.internalValue = this.format(val)
+    }
+  },
+  mounted() {
+    if (this.$refs.textarea) {
+      this.$refs.textarea.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault()
+          this.handleBlur()
+          this.handleChange()
+        }
+      })
     }
   },
   methods: {
@@ -359,19 +371,32 @@ export default {
 Box
 
 ```jsx
-<Input
-  type="textarea"
-  size="medium"
-  styleType="box"
-  placeholder="Search something..."
->
-  <div slot="prependIcon">
-    <i class="fas fa-search"></i>
-  </div>
-  <div slot="appendIcon">
-    <i class="fas fa-times-circle"></i>
-  </div>
-</Input>
+<template>
+  <Input
+    type="textarea"
+    size="medium"
+    styleType="box"
+    placeholder="Search something..."
+    @change="log"
+  >
+    <div slot="prependIcon">
+      <i class="fas fa-search"></i>
+    </div>
+    <div slot="appendIcon">
+      <i class="fas fa-times-circle"></i>
+    </div>
+  </Input>
+</template>
+
+<script>
+export default {
+  methods: {
+    log(value) {
+      alert(value)
+    }
+  }
+}
+</script>
 ```
 
 With formation and validation
