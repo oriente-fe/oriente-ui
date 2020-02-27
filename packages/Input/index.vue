@@ -371,19 +371,32 @@ export default {
 Box
 
 ```jsx
-<Input
-  type="textarea"
-  size="medium"
-  styleType="box"
-  placeholder="Search something..."
->
-  <div slot="prependIcon">
-    <i class="fas fa-search"></i>
-  </div>
-  <div slot="appendIcon">
-    <i class="fas fa-times-circle"></i>
-  </div>
-</Input>
+<template>
+  <Input
+    type="textarea"
+    size="medium"
+    styleType="box"
+    placeholder="Search something..."
+    @change="log"
+  >
+    <div slot="prependIcon">
+      <i class="fas fa-search"></i>
+    </div>
+    <div slot="appendIcon">
+      <i class="fas fa-times-circle"></i>
+    </div>
+  </Input>
+</template>
+
+<script>
+export default {
+  methods: {
+    log(value) {
+      alert(value)
+    }
+  }
+}
+</script>
 ```
 
 With formation and validation
