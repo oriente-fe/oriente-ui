@@ -11,6 +11,7 @@
       </div>
       <form @submit.prevent="() => submit(search)" :class="$style['form']">
         <Input
+          type="textarea"
           size="medium"
           styleType="box"
           :placeholder="placeholder"
@@ -34,8 +35,8 @@
         </Input>
       </form>
     </div>
-    <div :class="$style['content']">
-      <div v-if="history.length > 0" :class="$style['section']">
+    <div v-if="history.length > 0" :class="$style['content']">
+      <div :class="$style['section']">
         <div :class="$style['header']">
           <div :class="$style['title']">
             {{ historyLabel }}
@@ -166,19 +167,6 @@ export default {
 
 <style lang="scss" module>
 @import '~/styles/_all.scss';
-
-.fake {
-  position: relative;
-}
-
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  cursor: pointer;
-}
 
 .container {
   background: $white;
