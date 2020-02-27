@@ -18,6 +18,7 @@
           <slot name="prependIcon" />
         </div>
         <textarea
+          ref="textarea"
           v-if="type === 'textarea'"
           rows="1"
           wrap="off"
@@ -135,6 +136,17 @@ export default {
     value(val) {
       this.pureValue = val
       this.internalValue = this.format(val)
+    }
+  },
+  mounted() {
+    if (this.$refs.textarea) {
+      this.$refs.textarea.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault()
+          this.handleBlur()
+          this.handleChange()
+        }
+      })
     }
   },
   methods: {
