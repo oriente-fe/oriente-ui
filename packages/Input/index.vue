@@ -220,13 +220,13 @@ export default {
   height: 48px;
   > input {
     font-size: $fs-16;
-    line-height: $fs-16;
+    line-height: calc(#{$fs-16} * 1.5);
     height: 48px;
   }
   > textarea {
     font-size: $fs-16;
-    line-height: $fs-16;
-    height: $fs-16;
+    line-height: calc(#{$fs-16} * 1.5);
+    height: calc(#{$fs-16} * 1.5);
   }
 }
 
@@ -234,13 +234,13 @@ export default {
   height: 36px;
   > input {
     font-size: $fs-14;
-    line-height: $fs-14;
+    line-height: calc(#{$fs-14} * 1.5);
     height: 36px;
   }
   > textarea {
     font-size: $fs-14;
-    line-height: $fs-14;
-    height: $fs-14;
+    line-height: calc(#{$fs-14} * 1.5);
+    height: calc(#{$fs-14} * 1.5);
   }
 }
 
