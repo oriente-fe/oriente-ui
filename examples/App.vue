@@ -140,8 +140,10 @@ plugins: [
       </Header>
       <h2>Input</h2>
       <Input
-        :type="inputType"
-        label="Number"
+        type="text"
+        label="text"
+        maxlength="5"
+        inputmode="numeric"
         placeholder="[0-10000]"
         size="large"
         :value="inputValue"
@@ -314,7 +316,6 @@ export default {
       searchPanelValue: 'default value',
       searchPanelPlaceholder: 'Type anything...',
       history: new Set(['Airpods', 'iPhone', 'Macbook Pro']),
-      inputType: 'text',
       inputValue: '1234',
       backToTopTarget: window
     }
@@ -401,12 +402,6 @@ export default {
       this.history.clear()
       this.$forceUpdate()
       console.log('delete history')
-    },
-    handleBlur() {
-      this.inputType = 'text'
-    },
-    handleFocus() {
-      this.inputType = 'number'
     },
     inputFormat(v) {
       return v.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
