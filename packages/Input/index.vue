@@ -20,10 +20,10 @@
         <textarea
           ref="textarea"
           v-if="type === 'textarea'"
+          v-bind="{ ...$attrs }"
           rows="1"
           wrap="off"
           :class="[$style['input-self'], $style[styleType]]"
-          :placeholder="placeholder"
           @blur="handleBlur"
           @change="handleChange"
           @focus="handleFocus"
@@ -32,9 +32,9 @@
         />
         <input
           v-else
+          v-bind="{ ...$attrs }"
           :type="type"
           :class="[$style['input-self'], $style[styleType]]"
-          :placeholder="placeholder"
           @blur="handleBlur"
           @change="handleChange"
           @focus="handleFocus"
@@ -83,13 +83,6 @@ export default {
      * label text
      */
     label: {
-      type: String,
-      default: ''
-    },
-    /**
-     * placeholder text
-     */
-    placeholder: {
       type: String,
       default: ''
     },
