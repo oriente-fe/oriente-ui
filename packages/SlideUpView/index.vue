@@ -26,7 +26,11 @@
 </template>
 
 <script>
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
+import {
+  enableBodyScroll,
+  disableBodyScroll,
+  clearAllBodyScrollLocks
+} from 'body-scroll-lock'
 
 export default {
   name: 'SlideUpView',
@@ -60,6 +64,9 @@ export default {
         enableBodyScroll(target)
       }
     }
+  },
+  beforeDestory() {
+    clearAllBodyScrollLocks()
   },
   methods: {
     close() {

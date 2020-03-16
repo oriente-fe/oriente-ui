@@ -72,7 +72,11 @@
 </template>
 
 <script>
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
+import {
+  enableBodyScroll,
+  disableBodyScroll,
+  clearAllBodyScrollLocks
+} from 'body-scroll-lock'
 import _ from 'lodash'
 import Input from '@/Input'
 
@@ -129,6 +133,9 @@ export default {
     value(val) {
       this.search = val
     }
+  },
+  beforeDestory() {
+    clearAllBodyScrollLocks()
   },
   methods: {
     emitChange(text) {

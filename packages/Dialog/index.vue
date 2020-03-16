@@ -34,7 +34,11 @@
 </template>
 
 <script>
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
+import {
+  enableBodyScroll,
+  disableBodyScroll,
+  clearAllBodyScrollLocks
+} from 'body-scroll-lock'
 export default {
   name: 'Dialog',
   props: {
@@ -73,6 +77,9 @@ export default {
         enableBodyScroll(this.$refs.main)
       }
     }
+  },
+  beforeDestroy() {
+    clearAllBodyScrollLocks()
   },
   methods: {
     close() {
