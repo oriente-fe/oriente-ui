@@ -154,7 +154,7 @@ export default {
       this.$emit('blur')
     },
     handleChange() {
-      if (this.internalValue === '' || this.checkIfError(this.internalValue)) {
+      if (this.checkIfError(this.internalValue)) {
         return
       }
 
@@ -184,13 +184,10 @@ export default {
       this.$emit('keyup', this.internalValue)
     },
     checkIfError(value) {
-      const errors = this.rules.reduce((result, rule) => {
-        const valid = typeof rule === 'function' ? rule(value) : value
-        if (typeof valid === 'string') {
-          result.push(valid)
-        }
-        return result
-      }, [])
+      const errors = this.rules
+        .filter(rule => typeof rule === 'function')
+        .map(rule => rule(value))
+        .filter(valid => typeof valid === 'string')
       const hasError = errors.length > 0
       this.error = hasError ? errors.join(', ') : ''
       return hasError
