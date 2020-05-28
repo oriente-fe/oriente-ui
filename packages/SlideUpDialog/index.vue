@@ -17,6 +17,7 @@
     >
       <div>
         <span
+          v-if="!persistent"
           :class="$style.close"
           @click="close"
           v-html="require('~/assets/ic_close.svg')"
