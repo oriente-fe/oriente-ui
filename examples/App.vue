@@ -149,9 +149,9 @@ plugins: [
         :value="inputValue"
         :rules="[isNumber, lte0, ste10000]"
         :format="inputFormat"
-        @blur="handleBlur"
-        @focus="handleFocus"
-        @change="v => console.log(v)"
+        @blur="log"
+        @focus="log"
+        @change="log"
       />
       <br />
       <Input size="medium" styleType="box" placeholder="Search something...">
@@ -329,6 +329,9 @@ export default {
     },
     openConfirmDialog() {
       this.isConfirmDialogShown = true
+    },
+    log(...args) {
+      console.log(...args)
     },
     confirm() {
       console.log('confirmed')
