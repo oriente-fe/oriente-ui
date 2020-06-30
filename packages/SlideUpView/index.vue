@@ -15,7 +15,7 @@
       </Header>
     </slot>
 
-    <div :class="$style.content" ref="content">
+    <div :class="$style.content">
       <!-- @slot modal content -->
       <slot />
     </div>
@@ -26,8 +26,6 @@
 </template>
 
 <script>
-import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
-
 export default {
   name: 'SlideUpView',
   props: {
@@ -49,16 +47,6 @@ export default {
   data() {
     return {
       touchDeltaY: 0
-    }
-  },
-  watch: {
-    value(val) {
-      const target = this.$refs.content
-      if (val) {
-        disableBodyScroll(target)
-      } else {
-        enableBodyScroll(target)
-      }
     }
   },
   methods: {
