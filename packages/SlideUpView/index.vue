@@ -1,5 +1,5 @@
 <template>
-  <div ref="main" :class="[$style.container, { [$style['hidden']]: !value }]">
+  <div :class="[$style.container, { [$style['hidden']]: !value }]">
     <!-- @slot modal header -->
     <slot name="header">
       <Header>
@@ -15,7 +15,7 @@
       </Header>
     </slot>
 
-    <div :class="$style.content">
+    <div :class="$style.content" ref="content">
       <!-- @slot modal content -->
       <slot />
     </div>
@@ -57,7 +57,7 @@ export default {
   },
   watch: {
     value(val) {
-      const target = this.$refs.main
+      const target = this.$refs.content
       if (val) {
         disableBodyScroll(target)
       } else {
