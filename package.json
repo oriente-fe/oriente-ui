@@ -30,7 +30,7 @@
   ],
   "dependencies": {
     "body-scroll-lock": "^2.6.4",
-    "highlight.js": "^9.15.10",
+    "highlight.js": "^10.4.1",
     "vue": "^2.5.17"
   },
   "devDependencies": {
